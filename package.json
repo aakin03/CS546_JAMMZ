@@ -1,0 +1,22 @@
+{
+  "name": "cs546_final",
+  "version": "1.0.0",
+  "description": "A pet adoption platform for CS546 Final project.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://mtelker@bitbucket.org/cs546_jammz/cs546_final.git"
+  },
+  "author": "JAMMZ",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/cs546_jammz/cs546_final#readme",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "mongodb": "^2.2.25",
+    "uuid": "^3.0.1"
+  }
+}
