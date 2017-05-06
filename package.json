@@ -4,7 +4,8 @@
   "description": "A pet adoption platform for CS546 Final project.",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
@@ -14,9 +15,16 @@
   "license": "ISC",
   "homepage": "https://bitbucket.org/cs546_jammz/cs546_final#readme",
   "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.17.1",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.3",
     "express": "^4.15.2",
+    "express-handlebars": "^3.0.0",
+    "express-session": "^1.15.2",
     "mongodb": "^2.2.25",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
     "uuid": "^3.0.1"
   }
 }
