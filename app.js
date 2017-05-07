@@ -1,5 +1,4 @@
-/* JAMMZ - CS 546 Final
- */
+/* JAMMZ - CS 546 Final */
 
 
 const express = require("express");

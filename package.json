@@ -16,6 +16,7 @@
   "homepage": "https://bitbucket.org/cs546_jammz/cs546_final#readme",
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
+    "bcrypt-nodejs-as-promised": "^1.0.4",
     "body-parser": "^1.17.1",
     "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.3",
