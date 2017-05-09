@@ -11,7 +11,7 @@ let exportedMethods = {
 		
 		let uuid = uuidV4()
 		
-		return pets().then((petsCollection) => {
+		return pets().then((petCollection) => {
 			let newPet = {
 				_id: uuid,
 				petName: petName,
@@ -40,8 +40,8 @@ let exportedMethods = {
 	getPet(id) {
 		if (!id)
 			return Promise.reject("You must provide an id to search for a pet!");
-		return pets().then((petsCollection) => {
-			return petsCollection.findOne({ _id: id });
+		return pets().then((petCollection) => {
+			return petCollection.findOne({ _id: id });
 		})
 		then((result) => {
 			if (result === null) {
@@ -54,8 +54,8 @@ let exportedMethods = {
 	},
 	
     removePet(id) {
-        return pets().then((petsCollection) => {
-            return postCollection.removeOne({ _id: id }).then((deletionInfo) => {
+        return pets().then((petCollection) => {
+            return petCollection.removeOne({ _id: id }).then((deletionInfo) => {
                 if (deletionInfo.deletedCount === 0) {
                     throw (`Could not delete pet with id of ${id}`)
                 }
@@ -64,7 +64,7 @@ let exportedMethods = {
     },
 	
     updatePet(id, updatedPet) {
-        return pets().then((petsCollection) => {
+        return pets().then((petCollection) => {
             let updatedPetData = {};
 
             if (updatedPet.petName) {
