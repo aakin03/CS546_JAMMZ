@@ -64,7 +64,7 @@ passport.use('local', new LocalStrategy(
 /* This route loads the homepage. */
 router.get("/", (req,res) => {
     if (req.isAuthenticated()){
-        return res.render('layouts/private',{user: req.user});
+        return res.render('layouts/home',{user: req.user});
     } else {
         var error = req.flash('error');
         res.render('layouts/login', {errors: error});
@@ -86,8 +86,8 @@ router.get("/private", isLoggedIn, function(req, res) {
 router.post('/newuser',
     function(req,res){
         users.addUser(req.body.username, req.body.password, req.body.name, req.body.age)
-            .then((currentUser) => {
-                res.render('layouts/home');
+            .then(() => {
+                res.render('layouts/login');
             })
             .catch((e) => {
                 res.status(500).json({error: e});
