@@ -7,37 +7,21 @@ const router = express.Router();
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const bcrypt = require("bcrypt-nodejs");
+const data = require("../data");
+const users = data.users;
 
-//artifact from lab 9, must be replaced with users DB collection
-users = []
 
 function findUser(givenUser){
     return users.username === givenUser;
 }
 
-/* looks through the users object array for a given id, returns all properties */
-// MUST BE UPDATED FOR LEGIT DB AND MOVED TO data/users.js
-function findUserById(id){
-    return new Promise((resolve, reject) =>{
-        var currentUser = users.filter(function ( obj ) {
-            return obj._id === id;
-        })[0];
-        if (currentUser === undefined){
-            return reject();
-        } else {
-            return resolve(currentUser);
-        }
-    })
-}
-
-/* probably needs to be updated */
 passport.serializeUser(function (user, done) {
     done(null, user._id);
 });
 
 /* probably needs to be updated */
 passport.deserializeUser(function (id, done) {
-    findUserById(id).then((currentUser) =>{
+    users.getUserById(id).then((currentUser) =>{
         done(null, currentUser);
     });
 });
@@ -62,24 +46,9 @@ function comparePasswords(password, hashedPassword){
     });
 }
 
-/* similar as finduserById, except operates based on a username vs an id */
-function findUser(username){
-    return new Promise((resolve, reject) =>{
-        var currentUser = users.filter(function ( obj ) {
-            return obj.username === username;
-        })[0];
-        if (currentUser === undefined){
-            return reject();
-        } else {
-            return resolve(currentUser);
-        }
-    })
-}
-
-
 passport.use('local', new LocalStrategy(
     function (username, password, done) {
-        findUser(username).then((currentUser) => {
+        users.getUser(username).then((currentUser) => {
             comparePasswords(password, currentUser.hashedPassword).then(() =>{
                 return done(null, currentUser);
             }).catch(() => {

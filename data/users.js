@@ -25,6 +25,7 @@ let exportedMethods = {
             let newUser = {
                 _id: uuid,
                 sessionId: null,
+                userName: userName,
                 hashedPassword: hash,
                 profile: {
                     name: name,
@@ -45,7 +46,7 @@ let exportedMethods = {
         });
     },
 	
-    getUser(id) {
+    getUserById(id) {
         if (!id)
             return Promise.reject("You must provide an id to search for");
 
@@ -55,6 +56,22 @@ let exportedMethods = {
             .then((result) => {
                 if (result === null) {
                     return Promise.reject(`No user with id ${id} was found.`);
+                }
+                else {
+                    return result;
+                }
+            })
+    },
+    getUser(userName) {
+        if (!userName)
+            return Promise.reject("You must provide a username to search for");
+
+        return users().then((userCollection) => {
+            return userCollection.findOne({ userName: userName });
+        })
+            .then((result) => {
+                if (result === null) {
+                    return Promise.reject(`No user with name ${userName} was found.`);
                 }
                 else {
                     return result;
