@@ -19,7 +19,7 @@ passport.serializeUser(function (user, done) {
     done(null, user._id);
 });
 
-/* probably needs to be updated */
+
 passport.deserializeUser(function (id, done) {
     users.getUserById(id).then((currentUser) =>{
         done(null, currentUser);
@@ -74,13 +74,33 @@ router.get("/", (req,res) => {
 /* This route processes the login form from the root, delivers back home 
  * if authentication fails or to the private page if it is successful */
 router.post('/login', passport.authenticate('local', {
-      successRedirect: "/private",
+      successRedirect: "/home",
       failureRedirect: "/",
       failureFlash: true}));
 
 
 router.get("/private", isLoggedIn, function(req, res) {
-    res.render("layouts/private", {user: req.user});
+    res.render("/private", {user: req.user});
 });
+
+router.post('/newuser',
+    function(req,res){
+        users.addUser(req.body.username, req.body.password, req.body.name, req.body.age)
+            .then((currentUser) => {
+                res.render('layouts/home');
+            })
+            .catch((e) => {
+                res.status(500).json({error: e});
+            });
+    });
+
+router.get("/home", isLoggedIn, function(req,res) {
+    res.render("layouts/home");
+});
+
+router.get('/newuser', function(req,res) {
+    res.render("layouts/newUser");
+});
+
 
 module.exports = router;

@@ -1,7 +1,5 @@
 const mongoCollections = require("../config/mongoCollections");
 const uuidV4 = require('uuid/v4');
-const passport = require("passport");
-const LocalStrategy = require("passport-local").Strategy;
 const bcrypt = require("bcrypt-nodejs");
 const users = mongoCollections.users;
 
@@ -41,7 +39,7 @@ let exportedMethods = {
                     return newInsertInformation.insertedId;
                 })
                 .then((newId) => {
-                    return this.getUser(newId)
+                    return this.getUserById(newId)
                 });
         });
     },
