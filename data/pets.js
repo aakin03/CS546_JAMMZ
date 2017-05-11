@@ -43,7 +43,7 @@ let exportedMethods = {
 		return pets().then((petCollection) => {
 			return petCollection.findOne({ _id: id });
 		})
-		then((result) => {
+		.then((result) => {
 			if (result === null) {
 				return Promise.reject(`No pet with id ${id} was found.`);
 			}
@@ -92,6 +92,11 @@ let exportedMethods = {
         });
     },
 
+	viewAllPets() {
+		return pets().then((petCollection) => {
+			return petCollection.find({}).toArray();
+		});
+	}
 	//deletePet
 };
 
