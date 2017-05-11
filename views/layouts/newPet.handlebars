@@ -13,42 +13,38 @@
 <body>
     <p>You are logged in as {{user}}</p>
     <main class="container">
-        <h1>Enroll a New Pet</h1>
-        <div class="row">
-            <div class="col-sm-6">
-                <p>{{errors}}</p>
-                <div class="input_section">
-                    <form action="/pets/create" method="post">
-                    <div>
-                        <label>Name:</label>
-                        <input type="text" name="name" />
-                    </div>
-                    <div>
-                        <label>Breed:</label>
-                        <input type="text" name="breed" />
-                    </div>
-                    <div>
-                        <label>Age:</label>
-                        <input type="text" name="age" />
-                    </div>
-                    <div>
-                        <label>Color:</label>
-                        <input type="text" name="color" />
-                    </div>
-                    <div>
-                        <label>Weight:</label>
-                        <input type="text" name="weight" />
-                    </div>
-                    <div>
-                        <label>Additional Info:</label>
-                        <input type="text" name="info" />
-                    </div>
-                    <div>
-                        <input type="submit" value="Create" />
-                    </div>
-                </form>
+        <div class="row col-md-12 input_section">
+            <h1>Enroll a New Pet</h1>
+            <p>{{errors}}</p>
+            <form action="/pets/create" method="post">
+                <div>
+                    <label>Name:</label>
+                    <input type="text" name="name" />
                 </div>
-            </div>
+                <div>
+                    <label>Breed:</label>
+                    <input type="text" name="breed" />
+                </div>
+                <div>
+                    <label>Age:</label>
+                    <input type="text" name="age" />
+                </div>
+                <div>
+                    <label>Color:</label>
+                    <input type="text" name="color" />
+                </div>
+                <div>
+                    <label>Weight:</label>
+                    <input type="text" name="weight" />
+                </div>
+                <div>
+                    <label>Additional Info:</label>
+                    <input type="text" name="info" />
+                </div>
+                <div>
+                    <input type="submit" value="Create" />
+                </div>
+            </form>
         </div>
     </main>
 
