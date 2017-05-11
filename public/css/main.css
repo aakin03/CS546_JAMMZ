@@ -3,4 +3,9 @@
 #errors {
 	color:red;
 }
-
+.input_section{
+    padding-left: 40% !important;
+}
+form div{
+    padding: 20px 0px 0px 0px;
+}
