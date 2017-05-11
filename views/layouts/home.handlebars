@@ -1,4 +1,40 @@
-<p>You're logged in as {{user}}. <a href="/logout">Logout?</a></p>
-<p>{{info}}</p>
-<a href="/newpet">Enroll a New Pet</a>
-{{petsArray}}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>{{user}}'s Page</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
+        crossorigin="anonymous">
+</head>
+
+<body>
+    <p>You're logged in as {{user}}. <a href="/logout">Logout?</a></p>
+
+    <p>Here is some info about the user: </p>
+    <p>ID: {{id}}</p>
+    <p>Name: {{name}}</p>
+    <p>Age: {{age}}</p>
+    <ul>
+        <h1>Pets Available: </h1>
+        {{#each petsArry}}
+        <li>
+            {{_id}}
+        </li>
+        <li>
+            {{petName}}
+        </li>
+        <li>
+            {{ownerName}}
+        </li>
+        {{/each}}
+    </ul>
+    
+    <p>Wishlist: {{wishlist}}</p>
+
+    <p><a href="/buyPet">Browse Pets for Adoption</a></p>
+    <p><a href="/newPet">Enroll a New Pet</a></p>
+    <p>{{petsArray}}</p>
+    
+    
+</body>

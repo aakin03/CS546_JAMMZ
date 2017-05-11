@@ -101,14 +101,14 @@ router.get("/home", function (req, res) {
         return res.redirect('/');
     }
     var info;
-    var petsArray;
     pets.viewAllPets()
         .then((result) => {
-            petsArray = result;
             if (req.query.success == "true") {
                 info = "Successfully enrolled a new pet!"
             }
-            res.render("layouts/home", { user: req.user.userName, info: info, petsArray: petsArray });
+            let petsArray = result;
+        console.log(JSON.stringify(petsArray));
+            res.render("layouts/home.handlebars", { user: req.user.userName, id: req.user._id, name: req.user.profile.name, age: req.user.profile.age, wishlist: req.user.profile.wishlist, petsArry: petsArray});
         })
         .catch((e) => {
             res.render("layouts/home", { user: req.user.userName, info: info, petsArray: e });
