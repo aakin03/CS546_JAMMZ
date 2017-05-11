@@ -134,4 +134,24 @@ router.get('/newpet', function (req, res) {
 });
 
 
+router.get('/buypet', function (req, res) {
+   if (!req.isAuthenticated()) {
+        return res.redirect('/');
+    }
+    var info;
+    pets.viewAllPets()
+        .then((result) => {
+            if (req.query.success == "true") {
+                info = "Successfully enrolled a new pet!"
+            }
+            let petsArray = result;
+        console.log(petsArray);
+            res.render("layouts/buyPet.handlebars", {petsArray: petsArray});
+        })
+        .catch((e) => {
+            res.render("layouts/buyPet", { user: req.user.userName, info: info, petsArray: e });
+        });
+});
+
+
 module.exports = router;
