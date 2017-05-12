@@ -23,7 +23,7 @@ router.post("/create", isLoggedIn, function(req,res) {
         color: req.body.color,
         weight: req.body.weight
     }
-    pets.addPet(req.body.name, req.user, attributes, req.body.cost, "Owned", req.body.info)
+    pets.addPet(req.body.name, req.user.userName, attributes, req.body.cost, "Owned", req.body.info)
         .then((newPetId) => {
             res.redirect("/home?success=true"); 
         })

@@ -17,10 +17,10 @@ let exportedMethods = {
 				petName: petName,
 				ownerName: ownerName,
 				attributes: {
-					breed: null,
-					age: null,
-					color: null,
-					weight: null
+					breed: JSON.stringify(attributes.breed),
+					age: JSON.stringify(attributes.age),
+					color: JSON.stringify(attributes.color),
+					weight: JSON.stringify(attributes.weight)
 				},
 				cost: cost,
 				status: status,
@@ -37,15 +37,15 @@ let exportedMethods = {
 			});
 		});
 	},
-	getPet(id) {
-		if (!id)
-			return Promise.reject("You must provide an id to search for a pet!");
+	getPet(name) {
+		if (!name)
+			return Promise.reject("You must provide a user's name to search for a pet!");
 		return pets().then((petCollection) => {
-			return petCollection.findOne({ _id: id });
+			return petCollection.findOne({ownerName: name});
 		})
 		.then((result) => {
 			if (result === null) {
-				return Promise.reject(`No pet with id ${id} was found.`);
+				return Promise.reject(`No user with id ${name} was found.`);
 			}
 			else {
 				return result;

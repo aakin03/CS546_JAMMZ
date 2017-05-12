@@ -101,7 +101,7 @@ router.get("/home", function (req, res) {
         return res.redirect('/');
     }
     var info;
-    pets.viewAllPets()
+    pets.getPet(req.user.userName)
         .then((result) => {
             if (req.query.success == "true") {
                 info = "Successfully enrolled a new pet!"
