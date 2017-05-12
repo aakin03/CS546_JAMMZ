@@ -13,12 +13,12 @@
 <body>
 	<h1>JAMMZ Pet Adoption Site</h1>
 	<ul>
+        <li><a href="/home">Profile</a></li>
 		<li><a href="/buyPet">Browse Pets for Adoption</a></li>
 		<li><a href="/newPet">Enroll a New Pet</a></li>
 		<li><a href="/logout">Logout?</a></li>
 		
 	</ul>
-    <p>You're logged in as {{user}}. <a href="/logout">Logout?</a></p>
 	<h2>Browse For Pets!</h2>
     
     <div class="pet_display_info">
@@ -27,7 +27,7 @@
 		<p>ID: {{this._id}}</p>
         <p>Attributes</p>
         {{#each this.attributes}}
-        {{@key}}: {{this.attributes}}
+        {{@key}}: {{this}}
         <br>
         {{/each}}
         <p>Cost: {{this.cost}}</p>
