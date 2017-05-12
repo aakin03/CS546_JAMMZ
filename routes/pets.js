@@ -27,10 +27,10 @@ router.post("/create", isLoggedIn, function(req,res) {
     
     pets.addPet(req.body.name, req.user.userName, breed, age, color, weight, req.body.cost, "Owned", req.body.info)
         .then((newPetId) => {
-            res.redirect("/home?success=true"); 
+            res.redirect("/newpet?success=false");
         })
         .catch((e) => {
-            res.redirect("/newpet?success=false");
+            res.redirect("/home?success=true"); 
         });
 });
 
@@ -39,13 +39,12 @@ router.post("/update", isLoggedIn, function(req,res) {
         return res.redirect('/');
     pets.getOnePet(req.body.petName, req.user.userName)
     .then((result) => {
-        return pets.updatePet(result[0]._id, req.body, req.user.userName)
+        return pets.updatePet(result[0], req.body, req.user.userName)
         .then((updated) => {
-            res.redirect("/home?success=true");
+            res.redirect("/updatepet?success=false");
         })
         .catch((e) => {
-            res.redirect("/updatepet?success=false");
-            return Promise.reject('Could not update');
+            res.redirect("/home?success=true");
         });
     });
 });

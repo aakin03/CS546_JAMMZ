@@ -78,71 +78,78 @@ let exportedMethods = {
         });
     },
 	
-    updatePet(petID, updatedPet, userName) {
+    updatePet(oldPet, updatedPet, userName) {
         return pets().then((petCollection) => {
-            let updatedPetData = {};
-            
-            console.log("UpdatePet");
-            console.log(petID);
-            console.log("Updated Info");
-            console.log(updatedPet);
+            let pName, oName, pCost, pStatus, pBreed, pAge, pColor, pWeight, pInfo;        
 
-            if (updatedPet.petName) {
-                console.log("Pet Name:");
-                console.log(updatedPet.petName);
-                updatedPetData.petName = updatedPet.petName;
-            }
-            if (updatedPet.ownerName) {
-                console.log("Owner Name:");
-                console.log(updatedPet.ownerName);
-                updatedPetData.title = updatedPet.ownerName;
-            }
-            if (updatedPet.cost) {
-                console.log("Cost:");
-                console.log(updatedPet.cost);
-                updatedPetData.cost = updatedPet.cost;
-            }
-			if (updatedPet.status) {
-                console.log("Status:");
-                console.log(updatedPet.status);
-                updatedPetData.status = updatedPet.status;
-            }
-            if (updatedPet.breed) {
-                console.log("Breed:");
-                console.log(updatedPet.breed);
-                updatedPetData.breed = updatedPet.breed;
-            }
-            if (updatedPet.age) {
-                console.log("Age:");
-                console.log(updatedPet.age);
-                updatedPetData.age = updatedPet.age;
-            }
-            if (updatedPet.color) {
-                console.log("Color:");
-                console.log(updatedPet.color);
-                updatedPetData.color = updatedPet.color;
-            }
-            if (updatedPet.weight) {
-                console.log("Weight:");
-                console.log(updatedPet.weight);
-                updatedPetData.weight = updatedPet.weight;
-            }
-            if (updatedPet.info) {
-                console.log("Pet Info:");
-                console.log(updatedPet.info);
-                updatedPetData.info = updatedPet.info; 
-            }
+            if (updatedPet.petName) 
+                pName = updatedPet.petName;
+            else
+                pName = oldPet.petName;
+                    
             
+            if (updatedPet.ownerName)
+                oName = updatedPet.ownerName;
+            else
+                oName = oldPet.ownerName;
+            
+            if (updatedPet.cost)
+                pCost = updatedPet.cost;
+            else
+                pCost = oldPet.cost;
+			
+            if (updatedPet.status)
+                pStatus = updatedPet.status;
+            else
+                pStatus = oldPet.status;
+            
+            if (updatedPet.breed)
+                pBreed = updatedPet.breed;
+            else
+                pBreed = oldPet.attributes.Breed;
+            
+            if (updatedPet.age)
+                pAge = updatedPet.age;
+            else
+                pAge = oldPet.attributes.Age;
+            
+            if (updatedPet.color)
+                pColor = updatedPet.color;
+            else
+                pColor = oldPet.attributes.Color;
+            
+            if (updatedPet.weight)
+                pWeight = updatedPet.weight;
+            else
+                pWeight = oldPet.attributes.Weight;
+            
+            if (updatedPet.info)
+                pInfo = updatedPet.info; 
+            else
+                pInfo = oldPet.extraInfo;
+            
+            let updatedPetData = {
+				_id: oldPet._id,
+				petName: pName,
+				ownerName: oName,
+				attributes: {
+					Breed: pBreed,
+					Age: pAge,
+					Color: pColor,
+					Weight: pWeight
+				},
+				cost: pCost,
+				status: pStatus,
+				extraInfo: pInfo
+			}
+
             let updateCommand = {
                 $set: updatedPetData
             };
             
-            console.log("Update Command");
-            console.log(updatedPetData);
-            
-            return petCollection.updateOne({_id: petID}, updateCommand).then((result) => {
-                console.log(result);
-                return this.getOnePet(petName, userName);
+            return petCollection.updateOne({_id: oldPet._id, ownerName: userName}, updateCommand).then((result) => {
+                return this.getOnePet(petName, userName).then((result) => {
+                    return result;});
             });
         });
     },

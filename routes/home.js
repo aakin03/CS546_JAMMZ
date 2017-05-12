@@ -151,7 +151,6 @@ router.get('/buypet', function (req, res) {
 
 router.get('/updatepet', function (req, res) {
     var errors;
-    console.log(req.body);
     if (!req.isAuthenticated()) {
         return res.redirect("/");
     }
