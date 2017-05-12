@@ -17,10 +17,10 @@ let exportedMethods = {
 				petName: petName,
 				ownerName: ownerName,
 				attributes: {
-					breed: JSON.stringify(attributes.breed),
-					age: JSON.stringify(attributes.age),
-					color: JSON.stringify(attributes.color),
-					weight: JSON.stringify(attributes.weight)
+					breed: attributes.breed,
+					age: attributes.age,
+					color: attributes.color,
+					weight: attributes.weight
 				},
 				cost: cost,
 				status: status,
