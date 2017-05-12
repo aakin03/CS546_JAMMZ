@@ -3,30 +3,38 @@
 
     <head>
         <meta charset="utf-8">
-        <title>Enroll a New Pet</title>
+        <title>Update a Pet</title>
         <link rel="stylesheet" type="text/css" href="../../public/css/main.css">
         <link rel="stylesheet" type="text/css" href="../../public/css/reset.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
             crossorigin="anonymous">
     </head>
-
+    
     <body>
-        <h1>JAMMZ Pet Adoption Site</h1>
+        <h1>Update Your Pet's Stats</h1>
         <ul>
             <li><a href="/home">Profile</a></li>
             <li><a href="/buyPet">Browse Pets for Adoption</a></li>
             <li><a href="/newPet">Enroll a New Pet</a></li>
             <li><a href="/logout">Logout?</a></li>
-
         </ul>
+        
         <main class="container">
-            <div class="row col-md-12 input_section">
-                <h2>Enroll a New Pet</h2>
+            <div class="row col-md-12 input-section">
+                <h2>Update an Existing Pet</h2>
                 <p>{{errors}}</p>
-                <form action="/pets/create" method="post">
+                <form action="/pets/update" method="post">
                     <div>
-                        <label>Name:</label>
-                        <input type="text" name="name" />
+                        <label>Who Are You Updating?</label>
+                        <input type="text" name="petName" />
+                    </div>
+                    <div>
+                        <label>Change Status to: </label>
+                        <input type="text" name="status" />
+                    </div>
+                    <div>
+                        <label>Change Owner to: </label>
+                        <input type="text" name="ownerName" />
                     </div>
                     <div>
                         <label>Cost:</label>
@@ -53,7 +61,7 @@
                         <input type="text" name="info" />
                     </div>
                     <div>
-                        <input type="submit" value="Create" />
+                        <input type="submit" value="Update" />
                     </div>
                 </form>
             </div>

@@ -31,4 +31,17 @@ router.post("/create", isLoggedIn, function(req,res) {
         });
 });
 
+router.post("/update", isLoggedIn, function(req,res) {
+    pets.getPet(req.body.name)
+    .then((result) => {
+        return pets.updatePet(result._id, result)
+        .then((updated) => {
+            return updated;
+        })
+        .catch((e) => {
+            return Promise.reject('Could not update');
+        });
+    });
+});
+
 module.exports = router;

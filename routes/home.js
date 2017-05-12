@@ -107,7 +107,6 @@ router.get("/home", function (req, res) {
                 info = "Successfully enrolled a new pet!"
             }
             let petsArray = result;
-        console.log(petsArray[4].attributes);
             res.render("layouts/home.handlebars", {user: req.user.userName, id: req.user._id, name: req.user.profile.name, age: req.user.profile.age, wishlist: req.user.profile.wishlist, petsArray: petsArray});
         })
         .catch((e) => {
@@ -128,8 +127,6 @@ router.get('/newpet', function (req, res) {
     if (req.query.success == "false") {
         errors = "Failed to create new pet. Please try again.";
     }
-
-    console.log("help!");
     res.render("layouts/newPet", { user: req.user.userName, info: errors })
 });
 
@@ -145,12 +142,23 @@ router.get('/buypet', function (req, res) {
                 info = "Successfully enrolled a new pet!"
             }
             let petsArray = result;
-        console.log(petsArray);
             res.render("layouts/buyPet.handlebars", {petsArray: petsArray});
         })
         .catch((e) => {
             res.render("layouts/buyPet", { user: req.user.userName, info: info, petsArray: e });
         });
+});
+
+router.get('/updatepet', function (req, res) {
+    var errors;
+    console.log(req.body);
+    if (!req.isAuthenticated()) {
+        return res.redirect("/");
+    }
+    if (req.query.success == "false") {
+        errors = "Failed to update pet. Please try again.";
+    }
+    res.render("layouts/updatePet", { user: req.user.userName, info: errors })
 });
 
 

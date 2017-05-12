@@ -1,50 +1,53 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-    <meta charset="utf-8">
-    <title>{{name}}'s Page</title>
-	<link rel="stylesheet" type="text/css" href="../../public/css/main.css">
-    <link rel="stylesheet" type="text/css" href="../../public/css/reset.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
-        crossorigin="anonymous">
-</head>
+    <head>
+        <meta charset="utf-8">
+        <title>{{name}}'s Page</title>
+        <link rel="stylesheet" type="text/css" href="../../public/css/main.css">
+        <link rel="stylesheet" type="text/css" href="../../public/css/reset.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
+            crossorigin="anonymous">
+    </head>
 
-<body>
-	<h1>JAMMZ Pet Adoption Site</h1>
-	<ul>
-        <li><a href="/home">Profile</a></li>
-		<li><a href="/buyPet">Browse Pets for Adoption</a></li>
-		<li><a href="/newPet">Enroll a New Pet</a></li>
-		<li><a href="/logout">Logout?</a></li>
-	</ul>
-	
-    <p>Welcome, {{user}} !</p>
-	<h2>Your Profile</h2>
+    <body>
+        <h1>JAMMZ Pet Adoption Site</h1>
+        <ul>
+            <li><a href="/home">Profile</a></li>
+            <li><a href="/buyPet">Browse Pets for Adoption</a></li>
+            <li><a href="/newPet">Enroll a New Pet</a></li>
+            <li><a href="/logout">Logout?</a></li>
+        </ul>
 
-    <h3>My Info </h3>
-    <div class="user_specs">
-        <p>ID: {{id}}</p>
-        <p>Name: {{name}}</p>
-        <p>Age: {{age}}</p>
-    </div> 
-	
-	<h3>My Pets </h3>
-    <div class="pet_display_info">
-        {{#each petsArray}}
-        <p>ID: {{_id}}</p>
-        <p>Name: {{petName}}</p>
-        <p>Attributes</p>
-        {{#each this.attributes}}
-        {{@key}}: {{this}}
-        <br>
-        {{/each}}
-        <p>Cost: {{this.cost}}</p>
-        <p>Status: {{status}}</p>
-        <p>Extra Info: {{extraInfo}}</p>
-        <br>
-        {{/each}}
-    </div>
-    
-    <h3>Wishlist: {{wishlist}}</h3>
-</body>
+        <p>Welcome, {{name}}!</p>
+        <h2>Your Profile</h2>
+
+        <h3>My Info </h3>
+        <div class="user_specs">
+            <p>ID: {{id}}</p>
+            <p>Name: {{name}}</p>
+            <p>Age: {{age}}</p>
+        </div> 
+
+        <h3>My Pets </h3>
+        <div class="pet_display_info">
+            {{#each petsArray}}
+            <p><span>ID:</span> {{_id}}</p>
+            <p><span>Name:</span> {{petName}}</p>
+            <p><span>Attributes</span> <br>
+            {{#each this.attributes}}
+            {{@key}}: {{this}}
+            <br>
+            {{/each}}
+            </p>
+            <p><span>Cost:</span> {{this.cost}}</p>
+            <p><span>Status:</span> {{status}}</p>
+            <p><span>Extra Info:</span> {{extraInfo}}</p>
+            <h4><a href="/updatePet">Update Me!</a></h4>
+            <br>
+            {{/each}}
+        </div>
+
+        <h3>Wishlist: {{wishlist}}</h3>
+    </body>
+</html>

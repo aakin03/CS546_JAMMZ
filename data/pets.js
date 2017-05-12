@@ -16,10 +16,10 @@ let exportedMethods = {
 				petName: petName,
 				ownerName: ownerName,
 				attributes: {
-					breed: breed,
-					age: age,
-					color: color,
-					weight: weight
+					Breed: breed,
+					Age: age,
+					Color: color,
+					Weight: weight
 				},
 				cost: cost,
 				status: status,
@@ -69,18 +69,31 @@ let exportedMethods = {
             if (updatedPet.petName) {
                 updatedPetData.petName = updatedPet.petName;
             }
-
             if (updatedPet.ownerName) {
                 updatedPetData.title = updatedPet.ownerName;
             }
-
             if (updatedPet.cost) {
                 updatedPetData.cost = updatedPet.cost;
             }
 			if (updatedPet.status) {
                 updatedPetData.status = updatedPet.status;
             }
-
+            if (updatedPet.breed) {
+                updatedPetData.breed = updatedPet.breed;
+            }
+            if (updatedPet.age) {
+                updatedPetData.age = updatedPet.age;
+            }
+            if (updatedPet.color) {
+                updatedPetData.color = updatedPet.color;
+            }
+            if (updatedPet.weight) {
+                updatedPetData.weight = updatedPet.weight;
+            }
+            if (updatedPet.info) {
+                updatedPetData.info = updatedPet.info;
+            }
+            
             let updateCommand = {
                 $set: updatedPetData
             };
