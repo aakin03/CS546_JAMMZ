@@ -31,6 +31,7 @@ router.post("/create", isLoggedIn, function(req,res) {
         })
         .catch((e) => {
             res.redirect("/home?success=true");
+		
         });
 });
 
