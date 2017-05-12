@@ -22,6 +22,9 @@ router.post("/create", isLoggedIn, function(req,res) {
     let color = req.body.color;
     let weight = req.body.weight;
     
+    if (!req.isAuthenticated())
+        return res.redirect('/');
+    
     pets.addPet(req.body.name, req.user.userName, breed, age, color, weight, req.body.cost, "Owned", req.body.info)
         .then((newPetId) => {
             res.redirect("/home?success=true"); 
@@ -32,13 +35,16 @@ router.post("/create", isLoggedIn, function(req,res) {
 });
 
 router.post("/update", isLoggedIn, function(req,res) {
-    pets.getPet(req.body.name)
+    if (!req.isAuthenticated())
+        return res.redirect('/');
+    pets.getOnePet(req.body.petName, req.user.userName)
     .then((result) => {
-        return pets.updatePet(result._id, result)
+        return pets.updatePet(result[0]._id, req.body, req.user.userName)
         .then((updated) => {
-            return updated;
+            res.redirect("/home?success=true");
         })
         .catch((e) => {
+            res.redirect("/updatepet?success=false");
             return Promise.reject('Could not update');
         });
     });

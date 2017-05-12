@@ -36,7 +36,7 @@ let exportedMethods = {
 			});
 		});
 	},
-	getPet(name) {
+	getUsersPets(name) {
 		if (!name)
 			return Promise.reject("You must provide a user's name to search for a pet!");
 		return pets().then((petCollection) => {
@@ -44,7 +44,23 @@ let exportedMethods = {
 		})
 		.then((result) => {
 			if (result === null) {
-				return Promise.reject(`No user with id ${name} was found.`);
+				return Promise.reject("No ${name} was found.");
+			}
+			else {
+				return result;
+			}
+		})
+	},
+    
+    getOnePet(petName, userName) {
+		if (!petName)
+			return Promise.reject("You must provide a pet's name to search for a pet!");
+		return pets().then((petCollection) => {
+			return petCollection.find({petName: petName, ownerName: userName}).toArray();
+		})
+		.then((result) => {
+			if (result === null) {
+				return Promise.reject("${petName} was not found.");
 			}
 			else {
 				return result;
@@ -62,44 +78,71 @@ let exportedMethods = {
         });
     },
 	
-    updatePet(id, updatedPet) {
+    updatePet(petID, updatedPet, userName) {
         return pets().then((petCollection) => {
             let updatedPetData = {};
+            
+            console.log("UpdatePet");
+            console.log(petID);
+            console.log("Updated Info");
+            console.log(updatedPet);
 
             if (updatedPet.petName) {
+                console.log("Pet Name:");
+                console.log(updatedPet.petName);
                 updatedPetData.petName = updatedPet.petName;
             }
             if (updatedPet.ownerName) {
+                console.log("Owner Name:");
+                console.log(updatedPet.ownerName);
                 updatedPetData.title = updatedPet.ownerName;
             }
             if (updatedPet.cost) {
+                console.log("Cost:");
+                console.log(updatedPet.cost);
                 updatedPetData.cost = updatedPet.cost;
             }
 			if (updatedPet.status) {
+                console.log("Status:");
+                console.log(updatedPet.status);
                 updatedPetData.status = updatedPet.status;
             }
             if (updatedPet.breed) {
+                console.log("Breed:");
+                console.log(updatedPet.breed);
                 updatedPetData.breed = updatedPet.breed;
             }
             if (updatedPet.age) {
+                console.log("Age:");
+                console.log(updatedPet.age);
                 updatedPetData.age = updatedPet.age;
             }
             if (updatedPet.color) {
+                console.log("Color:");
+                console.log(updatedPet.color);
                 updatedPetData.color = updatedPet.color;
             }
             if (updatedPet.weight) {
+                console.log("Weight:");
+                console.log(updatedPet.weight);
                 updatedPetData.weight = updatedPet.weight;
             }
             if (updatedPet.info) {
-                updatedPetData.info = updatedPet.info;
+                console.log("Pet Info:");
+                console.log(updatedPet.info);
+                updatedPetData.info = updatedPet.info; 
             }
             
             let updateCommand = {
                 $set: updatedPetData
             };
-
-            return petCollection.updateOne({ _id: id }, updateCommand).then((result) => {
-                return this.getPetById(id);
+            
+            console.log("Update Command");
+            console.log(updatedPetData);
+            
+            return petCollection.updateOne({_id: petID}, updateCommand).then((result) => {
+                console.log(result);
+                return this.getOnePet(petName, userName);
             });
         });
     },
