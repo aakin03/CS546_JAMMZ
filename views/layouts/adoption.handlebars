@@ -3,7 +3,7 @@
 
     <head>
         <meta charset="utf-8">
-        <title>Browse For Pets!</title>
+        <title>Congratulations</title>
         <link rel="stylesheet" type="text/css" href="../../public/css/main.css">
         <link rel="stylesheet" type="text/css" href="../../public/css/reset.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
@@ -19,28 +19,7 @@
             <li><a href="/logout">Logout?</a></li>
 
         </ul>
-        <h2>Browse For Pets!</h2>
-
-        <div class="pet_display_info">
-        {{#each petsArray}}
-            <p style="font-size:20px">Name: {{this.petName}}</p>
-            <p>ID: {{this._id}}</p>
-            <p>Attributes</p>
-            {{#each this.attributes}}
-            {{@key}}: {{this}}
-            <br>
-            {{/each}}
-            <p>Cost: {{this.cost}}</p>
-            <p>Status: {{status}}</p>
-            <p>Extra Info: {{extraInfo}}</p>
-            <a href="/adoption">
-                <input type="button" value="Adopt me!" />
-            </a>
-            <br>
-            {{/each}}
-        </div>
-
-        <h3>Wishlist: {{wishlist}}</h3>    
+        <h2>You have adopted a new family member!</h2> 
 
     </body>
 </html>

@@ -149,6 +149,24 @@ router.get('/buypet', function (req, res) {
         });
 });
 
+router.get('/adoption', function (req, res) {
+   if (!req.isAuthenticated()) {
+        return res.redirect('/');
+    }
+    var info;
+    pets.viewAllPets()
+        .then((result) => {
+            if (req.query.success == "true") {
+                info = "Successfully adopted a new pet!"
+            }
+            let petsArray = result;
+            res.render("layouts/adoption.handlebars", {petsArray: petsArray});
+        })
+        .catch((e) => {
+            res.render("layouts/adoption", { user: req.user.userName, info: info, petsArray: e });
+        });
+});
+
 router.get('/updatepet', function (req, res) {
     var errors;
     console.log(req.body);
