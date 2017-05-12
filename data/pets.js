@@ -41,7 +41,7 @@ let exportedMethods = {
 		if (!name)
 			return Promise.reject("You must provide a user's name to search for a pet!");
 		return pets().then((petCollection) => {
-			return petCollection.findOne({ownerName: name});
+			return petCollection.find({ownerName: name}).toArray();
 		})
 		.then((result) => {
 			if (result === null) {

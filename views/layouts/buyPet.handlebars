@@ -21,8 +21,8 @@
     <p>You're logged in as {{user}}. <a href="/logout">Logout?</a></p>
 	<h2>Browse For Pets!</h2>
     
-    {{#each petsArray}}
     <div class="pet_display_info">
+    {{#each petsArray}}
         <p style="font-size:20px">Name: {{this.petName}}</p>
 		<p>ID: {{this._id}}</p>
         <p>Attributes</p>
