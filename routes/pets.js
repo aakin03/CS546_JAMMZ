@@ -27,11 +27,11 @@ router.post("/create", isLoggedIn, function(req,res) {
     
     pets.addPet(req.body.name, req.user.userName, breed, age, color, weight, req.body.cost, "Owned", req.body.info)
         .then((newPetId) => {
-            res.redirect("/newpet?success=false");
+			res.redirect("/newpet?success=false");
         })
         .catch((e) => {
-            res.redirect("/home?success=true"); 
-        });
+            res.redirect("/home?success=true");
+    });
 });
 
 router.post("/update", isLoggedIn, function(req,res) {
