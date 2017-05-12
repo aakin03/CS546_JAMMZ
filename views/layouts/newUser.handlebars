@@ -4,44 +4,48 @@
 <head>
     <meta charset="utf-8">
     <title>JAMMZ Pet Adoption Site</title>
+	<link rel="stylesheet" type="text/css" href="../../public/css/main.css">
     <link rel="stylesheet" type="text/css" href="../../public/css/reset.css">
-    <link rel="stylesheet" type="text/css" href="../../public/css/main.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
         crossorigin="anonymous">
 </head>
 
 <body>
+	<h1>JAMMZ Pet Adoption Site</h1>
+    <ul>
+		<li><a href="/buyPet">Browse Pets for Adoption</a></li>
+		<li><a href="/newPet">Enroll a New Pet</a></li>
+		<li><a href="/logout">Logout?</a></li>
+		
+	</ul>
+    <p>You're logged in as {{user}}.</p>
     <main class="container">
-        <h1>Create New User</h1>
-        <div class="row">
-            <div class="col-sm-6">
-                <p>{{errors}}</p>
-
-
-                <form action="/newuser" method="post">
-                    <div>
-                        <label>Username:</label>
-                        <input type="text" name="username" />
-                    </div>
-                    <div>
-                        <label>Password:</label>
-                        <input type="password" name="password" />
-                    </div>
-                    <div>
-                        <label>Name:</label>
-                        <input type="text" name="name" />
-                    </div>
-                    <div>
-                        <label>Age:</label>
-                        <input type="text" name="age" />
-                    </div>
-                    <div>
-                        <input type="submit" value="Create" />
-                    </div>
-                </form>
-            </div>
-        </div>
-    </main>
+		<div class="row col-md-12 input_section">
+        	<h2>Create New User</h2>
+			<p>{{errors}}</p>
+            <form action="/newuser" method="post">
+				<div>
+					<label>Username:</label>
+                    <input type="text" name="username" />
+				</div>
+                <div>
+					<label>Password:</label>
+					<input type="password" name="password" />
+				</div>
+				<div>
+					<label>Name:</label>
+					<input type="text" name="name" />
+				</div>
+				<div>
+					<label>Age:</label>
+					<input type="text" name="age" />
+				</div>
+				<div>
+					<input type="submit" value="Create" />
+				</div>
+			</form>
+		</div>
+	</main>
 
     <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
         crossorigin="anonymous"></script>

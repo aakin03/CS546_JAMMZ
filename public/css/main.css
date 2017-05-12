@@ -1,5 +1,10 @@
 /* CSS File for general site styling */
 
+body {
+	padding: 25px !important;
+	margin: 25px !important;
+}
+
 #errors {
 	color:red;
 }
@@ -9,3 +14,46 @@
 form div{
     padding: 20px 0px 0px 0px;
 }
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 32px;
+    text-decoration: none;
+}
+
+li a:hover {
+    background-color: purple;
+	color:white;
+}
+
+h1 {
+	text-align: center;
+}
+
+h3 {
+	text-decoration: underline;
+}
+
+.user_specs {
+	background-color: gainsboro;
+	padding: 20px;
+}
+
+.pet_display_info {
+	padding: 15px;
+}
+
