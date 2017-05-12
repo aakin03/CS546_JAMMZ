@@ -17,13 +17,12 @@ function isLoggedIn(req, res ,next) {
 
 /* Takes form input from /newpet page and enrolls new pet in database */
 router.post("/create", isLoggedIn, function(req,res) {
-    let attributes = {
-        breed: req.body.breed,
-        age: req.body.age,
-        color: req.body.color,
-        weight: req.body.weight
-    }
-    pets.addPet(req.body.name, req.user.userName, attributes, req.body.cost, "Owned", req.body.info)
+    let breed = req.body.breed;
+    let age =  req.body.age;
+    let color = req.body.color;
+    let weight = req.body.weight;
+    
+    pets.addPet(req.body.name, req.user.userName, breed, age, color, weight, req.body.cost, "Owned", req.body.info)
         .then((newPetId) => {
             res.redirect("/home?success=true"); 
         })

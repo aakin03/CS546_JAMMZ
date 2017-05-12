@@ -3,24 +3,23 @@ const uuidV4 = require('uuid/v4');
 const pets = mongoCollections.pets;
 
 let exportedMethods = {
-    addPet(petName, ownerName, attributes, cost, status, extraInfo) {
+    addPet(petName, ownerName, breed, age, color, weight, cost, status, extraInfo) {
 		if (!petName)
 			return Promise.reject("You must supply a pet name.");
 		if (!ownerName)
 			return Promise.reject("You must supply an owner name.");
 		
-		let uuid = uuidV4()
-		
+		let uuid = uuidV4();
 		return pets().then((petCollection) => {
 			let newPet = {
 				_id: uuid,
 				petName: petName,
 				ownerName: ownerName,
 				attributes: {
-					breed: attributes.breed,
-					age: attributes.age,
-					color: attributes.color,
-					weight: attributes.weight
+					breed: breed,
+					age: age,
+					color: color,
+					weight: weight
 				},
 				cost: cost,
 				status: status,
