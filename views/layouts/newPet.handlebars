@@ -4,17 +4,24 @@
 <head>
     <meta charset="utf-8">
     <title>JAMMZ Pet Adoption Site</title>
+	<link rel="stylesheet" type="text/css" href="../../public/css/main.css">
     <link rel="stylesheet" type="text/css" href="../../public/css/reset.css">
-    <link rel="stylesheet" type="text/css" href="../../public/css/main.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
         crossorigin="anonymous">
 </head>
 
 <body>
-    <p>You are logged in as {{user}}</p>
+	<h1>JAMMZ Pet Adoption Site</h1>
+    <ul>
+		<li><a href="/buyPet">Browse Pets for Adoption</a></li>
+		<li><a href="/newPet">Enroll a New Pet</a></li>
+		<li><a href="/logout">Logout?</a></li>
+		
+	</ul>
+    <p>You're logged in as {{user}}.</p>
     <main class="container">
         <div class="row col-md-12 input_section">
-            <h1>Enroll a New Pet</h1>
+            <h2>Enroll a New Pet</h2>
             <p>{{errors}}</p>
             <form action="/pets/create" method="post">
                 <div>

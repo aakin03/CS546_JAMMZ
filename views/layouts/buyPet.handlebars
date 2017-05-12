@@ -4,24 +4,27 @@
 <head>
     <meta charset="utf-8">
     <title>{{name}}'s Page</title>
+	<link rel="stylesheet" type="text/css" href="../../public/css/main.css">
+    <link rel="stylesheet" type="text/css" href="../../public/css/reset.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
         crossorigin="anonymous">
 </head>
 
 <body>
+	<h1>JAMMZ Pet Adoption Site</h1>
+	<ul>
+		<li><a href="/buyPet">Browse Pets for Adoption</a></li>
+		<li><a href="/newPet">Enroll a New Pet</a></li>
+		<li><a href="/logout">Logout?</a></li>
+		
+	</ul>
     <p>You're logged in as {{user}}. <a href="/logout">Logout?</a></p>
-
-    <p>Here is some info about the user: </p>
-    <div class="user_specs">
-        <p>ID: {{id}}</p>
-        <p>Name: {{name}}</p>
-        <p>Age: {{age}}</p>
-        <h2>Your Pets: </h2>
-    </div>    
+	<h2>Browse For Pets!</h2>
+    
     {{#each petsArray}}
     <div class="pet_display_info">
-        <p>ID: {{this._id}}</p>
-        <p>Name: {{this.petName}}</p>
+        <p style="font-size:20px">Name: {{this.petName}}</p>
+		<p>ID: {{this._id}}</p>
         <p>Attributes</p>
         {{#each this.attributes}}
         {{@key}}: {{this.attributes}}
@@ -34,11 +37,6 @@
         {{/each}}
     </div>
     
-    <h2>Wishlist: {{wishlist}}</h2>
-
-    <p><a href="/buyPet">Browse Pets for Adoption</a></p>
-    <p><a href="/newPet">Enroll a New Pet</a></p>
-    <p>{{petsArray}}</p>
-    
+    <h3>Wishlist: {{wishlist}}</h3>    
     
 </body>
