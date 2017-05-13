@@ -47,13 +47,14 @@
             <br>
             {{/each}}
         </div>
+        <h4><a href="/newPet"><input type="button" value="Enroll a New Pet" /></a></h4>
+        
 		<h3>Preferences: </h3>
-		<p>'hi'</p>
 		{{#each preferences}}
 		<p>{{this}}</p>
 		{{/each}}
 		
-		<h4><a href="/preferences"> <input type="button" value="Add Preferences!" /></a></h4>
+		<h4><a href="/preferences"> <input type="button" value="Add Preferences" /></a></h4>
         <h3>Wishlist: </h3>
         {{#each wishlist}}
         <p><span>ID:</span> {{this.[0]._id}}</p>
@@ -70,7 +71,7 @@
         </p>
         </br>
         {{/each}}
-		
+		<h4><a href="/buyPet"> <input type="button" value="Add Pets to Wishlist" /></a></h4>
         
     </body>
 </html>
