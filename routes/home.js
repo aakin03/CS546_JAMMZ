@@ -210,7 +210,7 @@ router.post('/wishlist', isLoggedIn, function (req, res) {
     });
 });
 
-router.get('/updatepet', function (req, res) {
+router.get('/updatepet/:petName', function (req, res) {
     var errors;
     if (!req.isAuthenticated()) {
         return res.redirect("/");
@@ -218,7 +218,7 @@ router.get('/updatepet', function (req, res) {
     if (req.query.success == "false") {
         errors = "Failed to update pet. Please try again.";
     }
-    res.render("layouts/updatePet", { user: req.user.userName, info: errors })
+    res.render("layouts/updatePet", {user: req.user.userName, info: errors, petName: req.params.petName})
 });
 
 
@@ -256,10 +256,6 @@ router.post("/preferences", isLoggedIn, function(req, res) {
                 _id: req.user._id
             },	
         }
-              
-		console.log("\npreferences");
-		
-		console.log(req.user.profile.preferences);
 		
         return users.updateUser(req.user._id, newInfo)
 		

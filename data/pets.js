@@ -83,10 +83,10 @@ let exportedMethods = {
         return pets().then((petCollection) => {
             let pName, oName, pCost, pStatus, pBreed, pAge, pColor, pWeight, pInfo;
             
-            if (updatedPet.petName) 
-                pName = updatedPet.petName;
+            if (updatedPet.newpetName)
+                pName = updatedPet.newpetName;
             else
-                pName = oldPet.petName;
+                pName = updatedPet.petName;
             
             if (updatedPet.ownerName)
                 oName = updatedPet.ownerName;
@@ -102,7 +102,7 @@ let exportedMethods = {
                 pStatus = updatedPet.status;
             else
                 pStatus = oldPet.status;
-            
+                        
             if (updatedPet.breed)
                 pBreed = updatedPet.breed;
             else
@@ -142,6 +142,9 @@ let exportedMethods = {
 				status: pStatus,
 				extraInfo: pInfo
 			}
+            
+            console.log("\nupdatedPetData");
+            console.log(updatedPetData);
 
             let updateCommand = {
                 $set: updatedPetData

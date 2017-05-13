@@ -21,48 +21,49 @@
         
         <main class="container">
             <div class="row col-md-12 input-section">
-                <h2>Update an Existing Pet</h2>
+                <h2>Update {{petName}}</h2>
                 <p>* indicates a required field</p>
                 <p>{{errors}}</p>
                 <form action="/pets/update" method="post">
+                    <input type="text" name="petName" value="{{petName}}" style="display: none" readonly>         
                     <div>
-                        <label>Who Are You Updating?</label>
-                        <input type="text" name="petName" placeholder="Name of Pet" pattern="[^\s]+"/> *
+                        <label>Changing Name to: </label>
+                        <input type="text" name="newpetName" placeholder="Name of Pet" pattern="[^\s]+">
                     </div>
                     <div>
                         <label>Change Status to: </label>
-                        <input type="text" name="status" placeholder="Available/Owned" />
+                        <input type="text" name="status" placeholder="Available/Owned">
                     </div>
                     <div>
                         <label>Change Owner to: </label>
-                        <input type="text" name="ownerName" placeholder="Enter Username" pattern="[^\s]+"/>
+                        <input type="text" name="ownerName" placeholder="Enter Username" pattern="[^\s]+">
                     </div>
                     <div>
                         <label>Cost:</label>
-                        <input type="text" name="cost" />
+                        <input type="text" name="cost">
                     </div>
                     <div>
                         <label>Breed:</label>
-                        <input type="text" name="breed" />
+                        <input type="text" name="breed">
                     </div>
                     <div>
                         <label>Age:</label>
-                        <input type="text" name="age" />
+                        <input type="text" name="age">
                     </div>
                     <div>
                         <label>Color:</label>
-                        <input type="text" name="color" />
+                        <input type="text" name="color">
                     </div>
                     <div>
                         <label>Weight:</label>
-                        <input type="text" name="weight" />
+                        <input type="text" name="weight">
                     </div>
                     <div>
                         <label>Additional Info:</label>
-                        <input type="text" name="info" />
+                        <input type="text" name="info">
                     </div>
                     <div>
-                        <input type="submit" value="Update" />
+                        <input type="submit" value="Update">
                     </div>
                 </form>
             </div>
