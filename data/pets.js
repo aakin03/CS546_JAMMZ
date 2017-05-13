@@ -143,16 +143,14 @@ let exportedMethods = {
 				extraInfo: pInfo
 			}
             
-            console.log("\nupdatedPetData");
-            console.log(updatedPetData);
-
             let updateCommand = {
                 $set: updatedPetData
             };
             
             return petCollection.updateOne({_id: oldPet._id, ownerName: userName}, updateCommand).then((result) => {
                 return this.getOnePet(petName, userName).then((result) => {
-                    return result;});
+                    return result;
+                });
             });
         });
     },

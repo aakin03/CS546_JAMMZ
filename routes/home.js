@@ -221,6 +221,44 @@ router.get('/updatepet/:petName', function (req, res) {
     res.render("layouts/updatePet", {user: req.user.userName, info: errors, petName: req.params.petName})
 });
 
+router.get('/updateUser', function (req, res) {
+    var errors;
+    if (!req.isAuthenticated())
+        return res.redirect("/");
+    if (req.query.success == "false")
+        errors = "Failed to update user. Please try again.";
+    res.render("layouts/updateUser", {user: req.user.userName, info: errors})
+});
+
+router.post('/updateUser', function (req, res) {
+    if (!req.isAuthenticated())
+        return res.redirect('/');
+    users.getUser(req.user.userName)
+    .then((result) => {
+    
+        let newInfo = {
+            _id: req.user._id,
+            sessionId: null,
+            userName: req.body.userName,
+            hashedPassword: req.user.hashedPassword,
+            profile: {
+                name: req.body.name,
+                age: req.body.age,
+                wishList: req.user.profile.wishList,
+				preferences:req.user.profile.preferences,
+                _id: req.user._id
+            },	
+        }
+    
+        return users.updateUser(req.user._id, newInfo)
+        .then((updated) => {
+            res.redirect("/home?success=false");
+        })
+        .catch((e) => {
+            res.redirect("/home?success=true");
+        });
+    });
+});
 
 router.get('/preferences', function (req, res) {
     var errors;
@@ -233,8 +271,7 @@ router.get('/preferences', function (req, res) {
     res.render("layouts/preferences", { user: req.user.userName, info: errors })
 });
 
-
-router.post("/preferences", isLoggedIn, function(req, res) {
+router.post('/preferences', isLoggedIn, function(req, res) {
     if (!req.isAuthenticated())
         return res.redirect('/');
 	
@@ -258,7 +295,6 @@ router.post("/preferences", isLoggedIn, function(req, res) {
         }
 		
         return users.updateUser(req.user._id, newInfo)
-		
         .then((updated) => {
             res.redirect("/home?success=true");
         })

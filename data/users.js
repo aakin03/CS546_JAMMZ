@@ -138,17 +138,7 @@ let exportedMethods = {
             });
             });
         });
-        },											
-	
-    removeUser(id) {
-        return users().then((userCollection) => {
-            return userCollection.removeOne({ _id: id }).then((deletionInfo) => {
-                if (deletionInfo.deletedCount === 0) {
-                    throw (`Could not delete user with id of ${id}`)
-                }
-            });
-        });
-    },
+        },
 	
 };
 

@@ -27,6 +27,7 @@
             <p>ID: {{id}}</p>
             <p>Name: {{name}}</p>
             <p>Age: {{age}}</p>
+            <h4><a href="/updateuser"> <input type="button" value="Update User"></a></h4>
         </div> 
 
         <h3>My Pets </h3>
@@ -59,6 +60,7 @@
         {{#each wishlist}}
         <p><span>ID:</span> {{this.[0]._id}}</p>
         <p><span>Name:</span> {{this.[0].petName}}</p>
+        <p><span>Owner Name:</span> {{this.[0].ownerName}} </p>
         <p><span>Attributes</span>
             {{#each this.[0].attributes}}
             {{@key}}: {{this}}
