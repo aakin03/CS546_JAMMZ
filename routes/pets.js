@@ -84,4 +84,6 @@ router.post("/adopted", isLoggedIn, function(req, res) {
     });
 });
 
+
+
 module.exports = router;

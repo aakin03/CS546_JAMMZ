@@ -159,6 +159,47 @@ router.get('/adopted', function (req, res) {
     res.render("layouts/adopted", { user: req.user.userName, info: errors })
 });
 
+router.get('/wishList', function (req, res) {
+    var errors;
+    if (!req.isAuthenticated()) {
+        return res.redirect("/");
+    }
+    if (req.query.success == "false") {
+        errors = "Failed to update wishlist. Please try again.";
+    }
+    res.render("layouts/home", { user: req.user.userName, info: errors })
+});
+
+router.post('/wishList', isLoggedIn, function (req, res) {
+     if (!req.isAuthenticated())
+        return res.redirect('/');
+    users.getUser(req.body.userName)
+    .then((result) => {
+        	
+        let newInfo = {
+            _id: req.body._id,
+            userName: req.body.userName,
+            hasedPassword: req.body.hashedPassword,
+            profile: {
+                name: req.body.name,
+                age: req.body.age,
+                wishList: result[0].wishList,
+                _id: req.body._id
+            }
+        }
+		
+        return pets.updateUser(re.body._id, newInfo)
+        .then((updated) => {
+            res.redirect("/home?success=false");
+        })
+        .catch((e) => {
+            res.redirect("/home?success=true");
+        });
+    });
+});
+
+
+
 router.get('/updatepet', function (req, res) {
     var errors;
     if (!req.isAuthenticated()) {

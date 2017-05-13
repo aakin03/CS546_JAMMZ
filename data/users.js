@@ -80,8 +80,10 @@ let exportedMethods = {
 	updateUser(id, updatedUser) {
         return this.getUserById(id).then((currentUser) => {
             let updatedUser = {
-                name: updatedUser.name,
-                age: updatedUser.age
+                username: updatedUser.userName,
+				name: updatedUser.profile.name,
+                age: updatedUser.profile.age,
+				wishList: [updatedUser.profile.wishList]
             };
 
             let updateCommand = { 
@@ -93,6 +95,23 @@ let exportedMethods = {
             });
         });
     },
+	
+	updateWishList(userId, petId, updatedWishList) {
+		return this.getUserById(id).then((currentUser) => {
+			let updatedWishList = {
+				wishList: updatedWishList.profile.wishList
+			};
+			
+			let updateCommand = {
+				$set: updatedWishList
+			};
+			
+			return userCollection.updateOne({ _id: userId }, updateCommand).then(() => {
+				return this.getUserById(userId);
+			});
+		});
+	},
+											
 	
     removeUser(id) {
         return users().then((userCollection) => {

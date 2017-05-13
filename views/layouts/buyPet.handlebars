@@ -39,9 +39,13 @@
                     <input type="text" name="ownerName" id="ownerName" value={{this.ownerName}} style="display:none" readonly />
                     <input type="submit" value="Adopt me!" />
             </form>
-            <a href="/wishlist">
-                <input type="button" value="Add to wishlist" />
-            </a>
+                
+			<form action="/users/wishList" method="post">
+					<input type="text" name="petId" id="petId" value={{this._id}} style="display:none" readonly />
+					<input type="text" name="wishlist" id="wishlist" value={{this.profile.wishList}} style="display:none" readonly />
+					<input type="submit" value="Wishlist!" />
+			</form>
+
             <br>
             {{/each}}
         </div>
