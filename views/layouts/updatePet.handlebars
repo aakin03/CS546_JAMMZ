@@ -27,7 +27,7 @@
                 <form action="/pets/update" method="post">
                     <div>
                         <label>Who Are You Updating?</label>
-                        <input type="text" name="petName" placeholder="Name of Pet" /> *
+                        <input type="text" name="petName" placeholder="Name of Pet" pattern="[^\s]+"/> *
                     </div>
                     <div>
                         <label>Change Status to: </label>
@@ -35,7 +35,7 @@
                     </div>
                     <div>
                         <label>Change Owner to: </label>
-                        <input type="text" name="ownerName" placeholder="Enter Username" />
+                        <input type="text" name="ownerName" placeholder="Enter Username" pattern="[^\s]+"/>
                     </div>
                     <div>
                         <label>Cost:</label>

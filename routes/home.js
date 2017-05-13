@@ -138,7 +138,7 @@ router.get('/buypet', function (req, res) {
         return res.redirect('/');
     }
     var info;
-	console.log(req.body);
+	
 	
     pets.viewAllPetsByStatus()
         .then((result) => {
@@ -196,14 +196,11 @@ router.post('/wishlist', isLoggedIn, function (req, res) {
             }
         }
         
-        console.log("\nWishlist");
-        console.log(req.user.profile.wishList);
-        
+       
         return users.updateUser(req.user._id, newInfo)
         .then((updated) => {
             
-            console.log("\nupdated");
-            console.log(updated);
+            
             
             res.redirect("/home?success=true");
         })
@@ -240,11 +237,12 @@ router.get('/preferences', function (req, res) {
 router.post("/preferences", isLoggedIn, function(req, res) {
     if (!req.isAuthenticated())
         return res.redirect('/');
+	
     users.getUser(req.user.userName)
     .then((result) => {
-		console.log(result);
-        req.user.profile.preferences.push(result);
-        
+		
+        req.user.profile.preferences.push(req.body.preferences);
+
         let newInfo = {
             _id: req.user._id,
             sessionId: null,
@@ -258,7 +256,11 @@ router.post("/preferences", isLoggedIn, function(req, res) {
                 _id: req.user._id
             },	
         }
-               
+              
+		console.log("\npreferences");
+		
+		console.log(req.user.profile.preferences);
+		
         return users.updateUser(req.user._id, newInfo)
 		
         .then((updated) => {

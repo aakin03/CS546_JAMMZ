@@ -27,7 +27,7 @@
                 <form action="/newuser" method="post">
                     <div>
                         <label>Username:</label>
-                        <input type="text" name="username" />
+                        <input type="text" name="username" pattern="[^\s]+"/>
                     </div>
                     <div>
                         <label>Password:</label>
@@ -35,7 +35,7 @@
                     </div>
                     <div>
                         <label>Name:</label>
-                        <input type="text" name="name" />
+                        <input type="text" name="name" pattern="[^\s]+"/>
                     </div>
                     <div>
                         <label>Age:</label>

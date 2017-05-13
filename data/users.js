@@ -110,6 +110,8 @@ let exportedMethods = {
                 pPreferences = updatedUser.profile.preferences;
             else
                 pPreferences = currentUser.profile.preferences;
+			
+			//console.log(pPreferences);
             
             let newInfo = {
                 _id: id,

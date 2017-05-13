@@ -46,7 +46,13 @@
             <h4><a href="/updatePet"> <input type="button" value="Update Me!" /></a></h4>
             <br>
             {{/each}}
-        </div>	
+        </div>
+		<h3>Preferences: </h3>
+		<p>'hi'</p>
+		{{#each preferences}}
+		<p>{{this}}</p>
+		{{/each}}
+		
 		<h4><a href="/preferences"> <input type="button" value="Add Preferences!" /></a></h4>
         <h3>Wishlist: </h3>
         {{#each wishlist}}
