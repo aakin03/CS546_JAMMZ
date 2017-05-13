@@ -29,6 +29,7 @@ let exportedMethods = {
                     name: name,
                     age: age,
                     wishList: [],
+					preferences: [],
                     _id: uuid
                 }
             }
@@ -61,21 +62,6 @@ let exportedMethods = {
             })
     },
 	
-	getUserByStatus(status) {
-		if(!status)
-			return Promise.reject("You must provide a status to search for");
-		return users().then((userCollection) => {
-			return userCollection.findOne({ status: status });
-		})
-			.then((result) => {
-				if (result ===null) {
-					return Promise.reject('No user with status ${status was found.');
-				}
-				else {
-					return result;
-				}
-		})
-	},
 	
     getUser(userName) {
         if (!userName)
@@ -98,7 +84,7 @@ let exportedMethods = {
         return users().then((userCollection) => {
         return this.getUserById(id)
         .then((currentUser) => {
-            let uName, pName, pAge, pWishlist;
+            let uName, pName, pAge, pWishlist, pPreferences;
             
             if (updatedUser.userName)
                 uName = updatedUser.userName;
@@ -119,6 +105,11 @@ let exportedMethods = {
                 pWishList = updatedUser.profile.wishList;
             else
                 pWishList = currentUser.profile.wishList;
+			
+			if (updatedUser.profile.preferences)
+                pPreferences = updatedUser.profile.preferences;
+            else
+                pPreferences = currentUser.profile.preferences;
             
             let newInfo = {
                 _id: id,
@@ -129,8 +120,10 @@ let exportedMethods = {
                     name: pName,
                     age: pAge,
                     wishList: pWishList,
+					preferences: pPreferences,
                     _id: id
-                }
+                },
+				
             }
             
             let updateCommand = { 

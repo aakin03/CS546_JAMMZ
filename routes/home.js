@@ -108,10 +108,12 @@ router.get("/home", function (req, res) {
                 info = "Successfully enrolled a new pet!"
             }
             let petsArray = result;
-            res.render("layouts/home.handlebars", {user: req.user.userName, id: req.user._id, name: req.user.profile.name, age: req.user.profile.age, wishlist: req.user.profile.wishList, petsArray: petsArray});
+
+            res.render("layouts/home.handlebars", {user: req.user.userName, id: req.user._id, name: req.user.profile.name, age: req.user.profile.age, wishlist: req.user.profile.wishlist, preferences: req.user.profile.preferences, petsArray: petsArray});
         })
         .catch((e) => {
-            res.render("layouts/home", {user: req.user.userName, id: req.user._id, name: req.user.profile.name, age: req.user.profile.age, wishlist: req.user.profile.wishList});
+            res.render("layouts/home", {user: req.user.userName, id: req.user._id, name: req.user.profile.name, age: req.user.profile.age, wishlist: req.user.profile.wishlist, preferences: req.user.profile.preferences});
+
         });
 });
 
@@ -189,6 +191,7 @@ router.post('/wishlist', isLoggedIn, function (req, res) {
                 name: req.user.profile.name,
                 age: req.user.profile.age,
                 wishList: req.user.profile.wishList,
+				preferences: req.user.profile.preferences,
                 _id: req.user._id
             }
         }
@@ -219,6 +222,51 @@ router.get('/updatepet', function (req, res) {
         errors = "Failed to update pet. Please try again.";
     }
     res.render("layouts/updatePet", { user: req.user.userName, info: errors })
+});
+
+
+router.get('/preferences', function (req, res) {
+    var errors;
+    if (!req.isAuthenticated()) {
+        return res.redirect("/");
+    }
+    if (req.query.success == "false") {
+        errors = "Failed to update pet. Please try again.";
+    }
+    res.render("layouts/preferences", { user: req.user.userName, info: errors })
+});
+
+
+router.post("/preferences", isLoggedIn, function(req, res) {
+    if (!req.isAuthenticated())
+        return res.redirect('/');
+    users.getUser(req.user.userName)
+    .then((result) => {
+		console.log(result);
+        req.user.profile.preferences.push(result[0]);
+        
+        let newInfo = {
+            _id: req.user._id,
+            sessionId: null,
+            userName: req.user.userName,
+            hashedPassword: req.user.hashedPassword,
+            profile: {
+                name: req.user.profile.name,
+                age: req.user.profile.age,
+                wishList: req.user.profile.wishList,
+				preferences:req.user.profile.preferences,
+                _id: req.user._id
+            },	
+        }
+               
+        return users.updateUser(req.user._id, newInfo)
+        .then((updated) => {
+            res.redirect("/home?success=false");
+        })
+        .catch((e) => {
+            res.redirect("/adopted?success=true");
+        });
+    });
 });
 
 

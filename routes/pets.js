@@ -39,7 +39,7 @@ router.post("/update", isLoggedIn, function(req,res) {
         return res.redirect('/');
     pets.getOnePet(req.body.petName, req.user.userName)
     .then((result) => {
-        return pets.updatePet(result[0], req.body, req.user.userName)
+        return pets.updatePet(req.body, req.user.userName)
         .then((updated) => {
             res.redirect("/updatepet?success=false");
         })
