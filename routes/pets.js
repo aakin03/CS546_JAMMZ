@@ -49,11 +49,14 @@ router.post("/update", isLoggedIn, function(req,res) {
     });
 });
 
-router.post("/adopted", isLoggedIn, function(req, res) {    
+router.post("/adopted", isLoggedIn, function(req, res) {
+    console.log(req.body);
+    console.log(req.user);
+    
     if (!req.isAuthenticated())
         return res.redirect('/');
     pets.getOnePet(req.body.petName, req.body.ownerName)
-    .then((result) => {        
+    .then((result) => {
         result[0].status = "Adopted";
         
         let newInfo = {
