@@ -108,10 +108,10 @@ router.get("/home", function (req, res) {
                 info = "Successfully enrolled a new pet!"
             }
             let petsArray = result;
-            res.render("layouts/home.handlebars", {user: req.user.userName, id: req.user._id, name: req.user.profile.name, age: req.user.profile.age, wishlist: req.user.profile.wishlist, petsArray: petsArray});
+            res.render("layouts/home.handlebars", {user: req.user.userName, id: req.user._id, name: req.user.profile.name, age: req.user.profile.age, wishlist: req.user.profile.wishList, petsArray: petsArray});
         })
         .catch((e) => {
-            res.render("layouts/home", {user: req.user.userName, id: req.user._id, name: req.user.profile.name, age: req.user.profile.age, wishlist: req.user.profile.wishlist});
+            res.render("layouts/home", {user: req.user.userName, id: req.user._id, name: req.user.profile.name, age: req.user.profile.age, wishlist: req.user.profile.wishList});
         });
 });
 
@@ -159,32 +159,26 @@ router.get('/adopted', function (req, res) {
     if (req.query.success == "false") {
         errors = "Failed to update pet. Please try again.";
     }
-    res.render("layouts/adopted", { user: req.user.userName, info: errors })
+    res.render("layouts/adopted", {user: req.user.userName, info: errors })
 });
 
 router.get('/wishlist', function (req, res) {
     var errors;
-    if (!req.isAuthenticated())
+    if (!req.isAuthenticated()) {
         return res.redirect('/');
-    if (req.query.success == "false")
+    }
+    if (req.query.success == "false") {
         errors = "Failed to update wishlist. Please try again.";
+    }
     res.render("layouts/home", {user: req.user.userName, info: errors })
 });
 
 router.post('/wishlist', isLoggedIn, function (req, res) {
-    
-    console.log(req.body.petName);
-    console.log(req.user.userName);
-    
     if (!req.isAuthenticated())
         return res.redirect('/');
     pets.getOnePet(req.body.petName, req.body.ownerName)
-    .then((result) => {
-        
-        console.log("Add to Wishlist");
-        console.log(result[0]);
-        
-        req.user.profile.wishList.push(result[0].petName);
+    .then((result) => {        
+        req.user.profile.wishList.push(result);
                 
         let newInfo = {
             _id: req.user._id,
@@ -199,16 +193,19 @@ router.post('/wishlist', isLoggedIn, function (req, res) {
             }
         }
         
+        console.log("\nWishlist");
+        console.log(req.user.profile.wishList);
+        
         return users.updateUser(req.user._id, newInfo)
         .then((updated) => {
             
-            console.log("Updated");
+            console.log("\nupdated");
             console.log(updated);
             
-            res.reidrect("/home?success=false");
+            res.redirect("/home?success=true");
         })
         .catch((e) => {
-            res.redirect("/home?success=true");
+            res.redirect("/home?success=false"); 
         });
     });
 });

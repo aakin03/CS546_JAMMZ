@@ -47,7 +47,24 @@
             <br>
             {{/each}}
         </div>
-
-        <h3>Wishlist: {{wishlist}}</h3>
+        
+        <h3>Wishlist: </h3>
+        {{#each wishlist}}
+        <p><span>ID:</span> {{this.[0]._id}}</p>
+        <p><span>Name:</span> {{this.[0].petName}}</p>
+        <p><span>Attributes</span>
+            {{#each this.[0].attributes}}
+            {{@key}}: {{this}}
+            <br>
+            {{/each}}
+            </p>
+        <p><span>Cost:</span> {{this.[0].cost}}</p>
+        <p><span>Status:</span> {{this.[0].status   }}</p>
+        <p><span>Extra Info:</span> {{this.[0].extraInfo}}</p>
+        
+        </p>
+        </br>
+        {{/each}}
+        
     </body>
 </html>

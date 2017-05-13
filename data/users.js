@@ -95,6 +95,7 @@ let exportedMethods = {
     },
 	
 	updateUser(id, updatedUser) {
+        return users().then((userCollection) => {
         return this.getUserById(id)
         .then((currentUser) => {
             let uName, pName, pAge, pWishlist;
@@ -135,14 +136,16 @@ let exportedMethods = {
             let updateCommand = { 
                 $set: newInfo
             };
-
-            return userCollection.updateOne({_id: updatedUser._id}, updateCommand).then((result) => {
-                return this.getUserById(_id).then((result) => {
+            
+            return userCollection.updateOne({_id: id}, updateCommand).then((result) => {
+                return this.getUserById(id)
+                .then((result) => {
                     return result;
                 });
             });
+            });
         });
-    },											
+        },											
 	
     removeUser(id) {
         return users().then((userCollection) => {
