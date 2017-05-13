@@ -28,7 +28,7 @@ let exportedMethods = {
                 profile: {
                     name: name,
                     age: age,
-                    wishList: null,
+                    wishList: [],
                     _id: uuid
                 }
             }
@@ -78,40 +78,54 @@ let exportedMethods = {
     },
 	
 	updateUser(id, updatedUser) {
-        return this.getUserById(id).then((currentUser) => {
-            let updatedUser = {
-                username: updatedUser.userName,
-				name: updatedUser.profile.name,
-                age: updatedUser.profile.age,
-				wishList: [updatedUser.profile.wishList]
-            };
-
+        return this.getUserById(id)
+        .then((currentUser) => {
+            let uName, pName, pAge, pWishlist;
+            
+            if (updatedUser.userName)
+                uName = updatedUser.userName;
+            else
+                uName = currentUser.userName;
+            
+            if (updatedUser.profile.name)
+                pName = updatedUser.profile.name;
+            else
+                pName = currentUser.profile.name;
+            
+            if (updatedUser.profile.age)
+                pAge = updatedUser.profile.age;
+            else
+                pAge = currentUser.profile.age;
+            
+            if (updatedUser.profile.wishList)
+                pWishList = updatedUser.profile.wishList;
+            else
+                pWishList = currentUser.profile.wishList;
+            
+            let newInfo = {
+                _id: id,
+                sessionId: null,
+                userName: uName,
+                hashedPassword: currentUser.hashedPassword,
+                profile: {
+                    name: pName,
+                    age: pAge,
+                    wishList: pWishList,
+                    _id: id
+                }
+            }
+            
             let updateCommand = { 
-                $set: updatedUser
+                $set: newInfo
             };
 
-            return userCollection.updateOne({ _id: id }, updateCommand).then(() => {
-                return this.getUserById(id);
+            return userCollection.updateOne({_id: updatedUser._id}, updateCommand).then((result) => {
+                return this.getUserById(_id).then((result) => {
+                    return result;
+                });
             });
         });
-    },
-	
-	updateWishList(userId, petId, updatedWishList) {
-		return this.getUserById(id).then((currentUser) => {
-			let updatedWishList = {
-				wishList: updatedWishList.profile.wishList
-			};
-			
-			let updateCommand = {
-				$set: updatedWishList
-			};
-			
-			return userCollection.updateOne({ _id: userId }, updateCommand).then(() => {
-				return this.getUserById(userId);
-			});
-		});
-	},
-											
+    },											
 	
     removeUser(id) {
         return users().then((userCollection) => {

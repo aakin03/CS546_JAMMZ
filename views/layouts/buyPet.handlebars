@@ -25,25 +25,25 @@
         {{#each petsArray}}
             <p style="font-size:20px">Name: {{this.petName}}</p>
             <p>ID: {{this._id}}</p>
-            <p>Owner: {{this.ownerName  }}</p>
+            <p>Owner: {{this.ownerName}}</p>
             <p>Attributes</p>
             {{#each this.attributes}}
             {{@key}}: {{this}}
             <br>
             {{/each}}
             <p>Cost: {{this.cost}}</p>
-            <p>Status: {{status}}</p>
-            <p>Extra Info: {{extraInfo}}</p>
+            <p>Status: {{this.status}}</p>
+            <p>Extra Info: {{this.extraInfo}}</p>
             <form action="/pets/adopted" method="post">
-                    <input type="text" name="petName" id="petName" value={{this.petName}} style="display:none" readonly />
-                    <input type="text" name="ownerName" id="ownerName" value={{this.ownerName}} style="display:none" readonly />
-                    <input type="submit" value="Adopt me!" />
+                <input type="text" name="petName" id="petName" value={{this.petName}} style="display:none" readonly />
+                <input type="text" name="ownerName" id="ownerName" value={{this.ownerName}} style="display:none" readonly />
+                <input type="submit" value="Adopt me!" />
             </form>
-                
-			<form action="/users/wishList" method="post">
-					<input type="text" name="petId" id="petId" value={{this._id}} style="display:none" readonly />
-					<input type="text" name="wishlist" id="wishlist" value={{this.profile.wishList}} style="display:none" readonly />
-					<input type="submit" value="Wishlist!" />
+            <br>
+			<form action="/wishlist" method="post">
+                <input type="text" name="petName" id="petName" value={{this.petName}} style="display:none" readonly />
+                <input type="text" name="ownerName" id="ownerName" value={{this.ownerName}} style="display:none" readonly />
+                <input type="submit" value="Wishlist!" />
 			</form>
 
             <br>

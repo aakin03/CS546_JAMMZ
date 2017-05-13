@@ -86,7 +86,6 @@ let exportedMethods = {
                 pName = updatedPet.petName;
             else
                 pName = oldPet.petName;
-                    
             
             if (updatedPet.ownerName)
                 oName = updatedPet.ownerName;

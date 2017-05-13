@@ -101,6 +101,7 @@ router.get("/home", function (req, res) {
         return res.redirect('/');
     }
     var info;
+    
     pets.getUsersPets(req.user.userName)
         .then((result) => {
             if (req.query.success == "true") {
@@ -151,7 +152,7 @@ router.get('/buypet', function (req, res) {
 router.get('/adopted', function (req, res) {
     var errors;
     if (!req.isAuthenticated()) {
-        return res.redirect("/");
+        return res.redirect('/');
     }
     if (req.query.success == "false") {
         errors = "Failed to update pet. Please try again.";
@@ -159,46 +160,56 @@ router.get('/adopted', function (req, res) {
     res.render("layouts/adopted", { user: req.user.userName, info: errors })
 });
 
-router.get('/wishList', function (req, res) {
+router.get('/wishlist', function (req, res) {
     var errors;
-    if (!req.isAuthenticated()) {
-        return res.redirect("/");
-    }
-    if (req.query.success == "false") {
+    if (!req.isAuthenticated())
+        return res.redirect('/');
+    if (req.query.success == "false")
         errors = "Failed to update wishlist. Please try again.";
-    }
-    res.render("layouts/home", { user: req.user.userName, info: errors })
+    res.render("layouts/home", {user: req.user.userName, info: errors })
 });
 
-router.post('/wishList', isLoggedIn, function (req, res) {
-     if (!req.isAuthenticated())
+router.post('/wishlist', isLoggedIn, function (req, res) {
+    
+    console.log(req.body.petName);
+    console.log(req.user.userName);
+    
+    if (!req.isAuthenticated())
         return res.redirect('/');
-    users.getUser(req.body.userName)
+    pets.getOnePet(req.body.petName, req.body.ownerName)
     .then((result) => {
-        	
+        
+        console.log("Add to Wishlist");
+        console.log(result[0]);
+        
+        req.user.profile.wishList.push(result[0].petName);
+                
         let newInfo = {
-            _id: req.body._id,
-            userName: req.body.userName,
-            hasedPassword: req.body.hashedPassword,
+            _id: req.user._id,
+            sessionId: null,
+            userName: req.user.userName,
+            hashedPassword: req.user.hashedPassword,
             profile: {
-                name: req.body.name,
-                age: req.body.age,
-                wishList: result[0].wishList,
-                _id: req.body._id
+                name: req.user.profile.name,
+                age: req.user.profile.age,
+                wishList: req.user.profile.wishList,
+                _id: req.user._id
             }
         }
-		
-        return pets.updateUser(re.body._id, newInfo)
+        
+        return users.updateUser(req.user._id, newInfo)
         .then((updated) => {
-            res.redirect("/home?success=false");
+            
+            console.log("Updated");
+            console.log(updated);
+            
+            res.reidrect("/home?success=false");
         })
         .catch((e) => {
             res.redirect("/home?success=true");
         });
     });
 });
-
-
 
 router.get('/updatepet', function (req, res) {
     var errors;

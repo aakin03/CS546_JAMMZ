@@ -50,9 +50,6 @@ router.post("/update", isLoggedIn, function(req,res) {
 });
 
 router.post("/adopted", isLoggedIn, function(req, res) {
-    console.log(req.body);
-    console.log(req.user);
-    
     if (!req.isAuthenticated())
         return res.redirect('/');
     pets.getOnePet(req.body.petName, req.body.ownerName)
@@ -76,14 +73,13 @@ router.post("/adopted", isLoggedIn, function(req, res) {
         
         return pets.updatePet(result[0], newInfo, req.body.ownerName)
         .then((updated) => {
-            res.redirect("/adoption?success=false");
+            res.redirect("/home?success=false");
         })
         .catch((e) => {
-            res.redirect("/home?success=true");
+            res.redirect("/adopted?success=true");
         });
     });
 });
-
 
 
 module.exports = router;
