@@ -109,10 +109,10 @@ router.get("/home", function (req, res) {
             }
             let petsArray = result;
 
-            res.render("layouts/home.handlebars", {user: req.user.userName, id: req.user._id, name: req.user.profile.name, age: req.user.profile.age, wishlist: req.user.profile.wishlist, preferences: req.user.profile.preferences, petsArray: petsArray});
+            res.render("layouts/home.handlebars", {user: req.user.userName, id: req.user._id, name: req.user.profile.name, age: req.user.profile.age, wishlist: req.user.profile.wishList, preferences: req.user.profile.preferences, petsArray: petsArray});
         })
         .catch((e) => {
-            res.render("layouts/home", {user: req.user.userName, id: req.user._id, name: req.user.profile.name, age: req.user.profile.age, wishlist: req.user.profile.wishlist, preferences: req.user.profile.preferences});
+            res.render("layouts/home", {user: req.user.userName, id: req.user._id, name: req.user.profile.name, age: req.user.profile.age, wishlist: req.user.profile.wishList, preferences: req.user.profile.preferences});
 
         });
 });
@@ -231,7 +231,7 @@ router.get('/preferences', function (req, res) {
         return res.redirect("/");
     }
     if (req.query.success == "false") {
-        errors = "Failed to update pet. Please try again.";
+        errors = "Failed to update preferences. Please try again.";
     }
     res.render("layouts/preferences", { user: req.user.userName, info: errors })
 });
@@ -243,7 +243,7 @@ router.post("/preferences", isLoggedIn, function(req, res) {
     users.getUser(req.user.userName)
     .then((result) => {
 		console.log(result);
-        req.user.profile.preferences.push(result[0]);
+        req.user.profile.preferences.push(result);
         
         let newInfo = {
             _id: req.user._id,
@@ -260,11 +260,12 @@ router.post("/preferences", isLoggedIn, function(req, res) {
         }
                
         return users.updateUser(req.user._id, newInfo)
+		
         .then((updated) => {
-            res.redirect("/home?success=false");
+            res.redirect("/home?success=true");
         })
         .catch((e) => {
-            res.redirect("/adopted?success=true");
+            res.redirect("/home?success=false");
         });
     });
 });
