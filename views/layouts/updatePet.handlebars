@@ -22,19 +22,20 @@
         <main class="container">
             <div class="row col-md-12 input-section">
                 <h2>Update an Existing Pet</h2>
+                <p>* indicates a required field</p>
                 <p>{{errors}}</p>
                 <form action="/pets/update" method="post">
                     <div>
                         <label>Who Are You Updating?</label>
-                        <input type="text" name="petName" />
+                        <input type="text" name="petName" placeholder="Name of Pet" /> *
                     </div>
                     <div>
                         <label>Change Status to: </label>
-                        <input type="text" name="status" />
+                        <input type="text" name="status" placeholder="Available/Owned" />
                     </div>
                     <div>
                         <label>Change Owner to: </label>
-                        <input type="text" name="ownerName" />
+                        <input type="text" name="ownerName" placeholder="Enter Username" />
                     </div>
                     <div>
                         <label>Cost:</label>

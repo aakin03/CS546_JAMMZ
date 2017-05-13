@@ -25,7 +25,7 @@ router.post("/create", isLoggedIn, function(req,res) {
     if (!req.isAuthenticated())
         return res.redirect('/');
     
-    pets.addPet(req.body.name, req.user.userName, breed, age, color, weight, req.body.cost, "Owned", req.body.info)
+    pets.addPet(req.body.name, req.user.userName, breed, age, color, weight, req.body.cost, "Available", req.body.info)
         .then((newPetId) => {
 			res.redirect("/newpet?success=false");
         })
@@ -42,6 +42,38 @@ router.post("/update", isLoggedIn, function(req,res) {
         return pets.updatePet(result[0], req.body, req.user.userName)
         .then((updated) => {
             res.redirect("/updatepet?success=false");
+        })
+        .catch((e) => {
+            res.redirect("/home?success=true");
+        });
+    });
+});
+
+router.post("/adopted", isLoggedIn, function(req, res) {    
+    if (!req.isAuthenticated())
+        return res.redirect('/');
+    pets.getOnePet(req.body.petName, req.body.ownerName)
+    .then((result) => {        
+        result[0].status = "Adopted";
+        
+        let newInfo = {
+            _id: req.body._id,
+            petName: req.body.petName,
+            ownerName: req.user.userName,
+            attributes: {
+                Breed: req.body.Breed,
+                Age: req.body.Age,
+                Color: req.body.Color,
+                Weight: req.body.Weight
+            },
+            cost: req.body.cost,
+            status: result[0].status,
+            extraInfo: req.body.extraInfo
+        }
+        
+        return pets.updatePet(result[0], newInfo, req.body.ownerName)
+        .then((updated) => {
+            res.redirect("/adoption?success=false");
         })
         .catch((e) => {
             res.redirect("/home?success=true");

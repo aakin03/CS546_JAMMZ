@@ -61,7 +61,7 @@ passport.use('local', new LocalStrategy(
 /* This route loads the homepage or renders the login page if not authenticated. */
 router.get("/", (req, res) => {
     if (req.isAuthenticated()) {
-        res.redirect('/home');
+        res.redirect('/buyPet');
     } else {
         var error = req.flash('error');
         res.render('layouts/login', { errors: error });
@@ -71,7 +71,7 @@ router.get("/", (req, res) => {
 /* This route processes the login form from the root, delivers home on success 
  * and back to login on fail */
 router.post('/login', passport.authenticate('local', {
-    successRedirect: "/home",
+    successRedirect: "/buyPet",
     failureRedirect: "/",
     failureFlash: true
 }));
@@ -130,7 +130,6 @@ router.get('/newpet', function (req, res) {
     res.render("layouts/newPet", { user: req.user.userName, info: errors })
 });
 
-
 router.get('/buypet', function (req, res) {
    if (!req.isAuthenticated()) {
         return res.redirect('/');
@@ -142,29 +141,22 @@ router.get('/buypet', function (req, res) {
                 info = "Successfully enrolled a new pet!"
             }
             let petsArray = result;
-            res.render("layouts/buyPet.handlebars", {petsArray: petsArray});
+            res.render("layouts/buyPet", {petsArray: petsArray});
         })
         .catch((e) => {
             res.render("layouts/buyPet", { user: req.user.userName, info: info, petsArray: e });
         });
 });
 
-router.get('/adoption', function (req, res) {
-   if (!req.isAuthenticated()) {
-        return res.redirect('/');
+router.get('/adopted', function (req, res) {
+    var errors;
+    if (!req.isAuthenticated()) {
+        return res.redirect("/");
     }
-    var info;
-    pets.viewAllPets()
-        .then((result) => {
-            if (req.query.success == "true") {
-                info = "Successfully adopted a new pet!"
-            }
-            let petsArray = result;
-            res.render("layouts/adoption.handlebars", {petsArray: petsArray});
-        })
-        .catch((e) => {
-            res.render("layouts/adoption", { user: req.user.userName, info: info, petsArray: e });
-        });
+    if (req.query.success == "false") {
+        errors = "Failed to update pet. Please try again.";
+    }
+    res.render("layouts/adopted", { user: req.user.userName, info: errors })
 });
 
 router.get('/updatepet', function (req, res) {

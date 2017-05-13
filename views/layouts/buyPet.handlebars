@@ -19,12 +19,13 @@
             <li><a href="/logout">Logout?</a></li>
 
         </ul>
-        <h2>Browse For Pets!</h2>
+        <h2>Pets for Adoption</h2>
 
         <div class="pet_display_info">
         {{#each petsArray}}
             <p style="font-size:20px">Name: {{this.petName}}</p>
             <p>ID: {{this._id}}</p>
+            <p>Owner: {{this.ownerName  }}</p>
             <p>Attributes</p>
             {{#each this.attributes}}
             {{@key}}: {{this}}
@@ -33,17 +34,16 @@
             <p>Cost: {{this.cost}}</p>
             <p>Status: {{status}}</p>
             <p>Extra Info: {{extraInfo}}</p>
-            <a href="/adoption">
-                <input type="button" value="Adopt me!" />
-            </a>
+            <form action="/pets/adopted" method="post">
+                    <input type="text" name="petName" id="petName" value={{this.petName}} style="display:none" readonly />
+                    <input type="text" name="ownerName" id="ownerName" value={{this.ownerName}} style="display:none" readonly />
+                    <input type="submit" value="Adopt me!" />
+            </form>
             <a href="/wishlist">
                 <input type="button" value="Add to wishlist" />
             </a>
             <br>
             {{/each}}
         </div>
-
-        <h3>Wishlist: {{wishlist}}</h3>    
-
     </body>
 </html>

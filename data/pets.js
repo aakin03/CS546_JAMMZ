@@ -80,8 +80,8 @@ let exportedMethods = {
 	
     updatePet(oldPet, updatedPet, userName) {
         return pets().then((petCollection) => {
-            let pName, oName, pCost, pStatus, pBreed, pAge, pColor, pWeight, pInfo;        
-
+            let pName, oName, pCost, pStatus, pBreed, pAge, pColor, pWeight, pInfo;
+            
             if (updatedPet.petName) 
                 pName = updatedPet.petName;
             else
