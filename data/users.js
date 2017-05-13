@@ -60,6 +60,23 @@ let exportedMethods = {
                 }
             })
     },
+	
+	getUserByStatus(status) {
+		if(!status)
+			return Promise.reject("You must provide a status to search for");
+		return users().then((userCollection) => {
+			return userCollection.findOne({ status: status });
+		})
+			.then((result) => {
+				if (result ===null) {
+					return Promise.reject('No user with status ${status was found.');
+				}
+				else {
+					return result;
+				}
+		})
+	},
+	
     getUser(userName) {
         if (!userName)
             return Promise.reject("You must provide a username to search for");

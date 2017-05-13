@@ -136,16 +136,18 @@ router.get('/buypet', function (req, res) {
         return res.redirect('/');
     }
     var info;
-    pets.viewAllPets()
+	console.log(req.body);
+	
+    pets.viewAllPetsByStatus()
         .then((result) => {
             if (req.query.success == "true") {
-                info = "Successfully enrolled a new pet!"
+                info = "Successfully found available pets!"
             }
             let petsArray = result;
-            res.render("layouts/buyPet", {petsArray: petsArray});
+            res.render("layouts/buyPet.handlebars", {petsArray: petsArray});
         })
         .catch((e) => {
-            res.render("layouts/buyPet", { user: req.user.userName, info: info, petsArray: e });
+            res.render("layouts/buyPet", {petsArray: petsArray});
         });
 });
 

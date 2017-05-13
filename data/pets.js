@@ -51,7 +51,8 @@ let exportedMethods = {
 			}
 		})
 	},
-    
+
+   
     getOnePet(petName, userName) {
 		if (!petName)
 			return Promise.reject("You must provide a pet's name to search for a pet!");
@@ -152,10 +153,17 @@ let exportedMethods = {
             });
         });
     },
+		
 
 	viewAllPets() {
 		return pets().then((petCollection) => {
 			return petCollection.find({}).toArray();
+		});
+	},
+	
+	viewAllPetsByStatus() {
+		return pets().then((petCollection) => {
+			return petCollection.find({status: "Available"}).toArray();
 		});
 	}
 	//deletePet
