@@ -233,7 +233,7 @@ router.get('/updateUser', function (req, res) {
 router.post('/updateUser', function (req, res) {
     if (!req.isAuthenticated())
         return res.redirect('/');
-    users.getUser(req.user.userName)
+    users.getUserById(req.user._id)
     .then((result) => {
     
         let newInfo = {
@@ -275,7 +275,7 @@ router.post('/preferences', isLoggedIn, function(req, res) {
     if (!req.isAuthenticated())
         return res.redirect('/');
 	
-    users.getUser(req.user.userName)
+    users.getUserById(req.user._id)
     .then((result) => {
 		
         req.user.profile.preferences.push(req.body.preferences);
