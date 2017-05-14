@@ -62,3 +62,12 @@ p span{
     font-weight: bold;
 }
 
+.jumbotron {
+	background-image: url(../../public/css/HomeImg.jpg);
+	background-repeat: no-repeat;
+	width:100%;
+	
+	
+	
+}
+
