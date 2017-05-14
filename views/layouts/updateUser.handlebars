@@ -25,24 +25,34 @@
                 <p>* indicates a required field</p>
                 <p>{{errors}}</p>
                 <form action="/updateUser" method="post">
-                    <div>
-                        <label>Change Your Name</label>
-                        <input type="text" name="name" pattern="[^\s]+">
+					
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Change Name:</label>
+						<div class="col-sm-10">
+                        	<input type="text" name="name" class="form-control" placeholder="Name" pattern="[^\s]+">
+						</div>
+                    </div>
+					
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Change Username:</label>
+                        <div class="col-sm-10">
+							<input type="text" name="userName" class="form-control" placeholder="Username" pattern="[^\s]+">
+						</div>
+                    </div>
+					
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Change Age:</label>
+						<div class="col-sm-10">
+                        	<input type="text" name="age" class="form-control" placeholder="Age">
+						</div>
                     </div>
                     <div>
-                        <label>Change Your Username</label>
-                        <input type="text" name="userName" pattern="[^\s]+">
-                    </div>
-                    <div>
-                        <label>Change Your Age</label>
-                        <input type="text" name="age">
-                    </div>
-                    <div>
-                        <input type="submit" value="Update">
-                    </div>
+                        <input type="submit" value="Update" class="btn-lg btn-primary">
+                    </div>	
                 </form>
             </div>
         </main>
+		<footer class="footer">Created with puppy love by JAMMZ | Copyright © 2017 JAAMZ. All Rights Reserved.</footer>
         <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
             crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"

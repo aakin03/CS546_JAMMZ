@@ -32,9 +32,12 @@
             <p>Name: {{name}}</p>
             <p>Age: {{age}}</p>
 
-            <h4><a href="/updateuser"> <input type="button" value="Update User" class="btn btn-primary"></a></h4>
+			<p><a href="/updateuser" type="button" value="Update User" class="btn btn-primary">Update User</a></p>
+			<!--<input type="submit" value="Update User" class="btn btn-primary">-->
 
         </div> 
+		
+		<hr>
 
         <h3>My Pets </h3>
         <div class="pet_display_info">
@@ -50,19 +53,25 @@
             <p><span>Cost:</span> {{this.cost}}</p>
             <p><span>Status:</span> {{status}}</p>
             <p><span>Extra Info:</span> {{extraInfo}}</p>
-            <h4><a href="/updatepet/{{petName}}"> <input type="button" value="Update Me!" class="btn btn-primary"/></a></h4>
-            <br>
+            <h4><a href="/updatepet/{{petName}}" type="button" value="Update Me!" class="btn btn-primary"/>Update Pet</a></h4>
+            
+			
             {{/each}}
         </div>
-        <h4><a href="/newPet"><input type="button" value="Enroll a New Pet" class="btn btn-primary"/></a></h4>
+        <h4><a href="/newPet" type="button" value="Enroll a New Pet" class="btn btn-primary"/>Enroll New Pet</a></h4>
         
+		<hr>
+		
 		<h3>Preferences: </h3>
 		{{#each preferences}}
 		<p>{{this}}</p>
 		{{/each}}
 		
-		<h4><a href="/preferences"> <input type="button" value="Add Preferences" class="btn btn-primary"/></a></h4>
-        <h3>Wishlist: </h3>
+		<h4><a href="/preferences" type="button" value="Add Preferences" class="btn btn-primary"/>Add Preferences</a></h4>
+        
+		<hr>
+		
+		<h3>Wishlist: </h3>
         {{#each wishlist}}
         <p><span>ID:</span> {{this.[0]._id}}</p>
         <p><span>Name:</span> {{this.[0].petName}}</p>
@@ -76,10 +85,9 @@
         <p><span>Cost:</span> {{this.[0].cost}}</p>
         <p><span>Status:</span> {{this.[0].status   }}</p>
         <p><span>Extra Info:</span> {{this.[0].extraInfo}}</p>
-        </p>
-        </br>
         {{/each}}
-		<h4><a href="/buyPet"> <input type="button" value="Add Pets to Wishlist" class="btn btn-primary"/></a></h4>
-        <footer class="footer">Created with puppy love by JAMMZ</footer>
+		<h4><a href="/buyPet" type="button" value="Add Pets to Wishlist" class="btn btn-primary"/>Add to Wishlist</a></h4>
+		<footer class="footer">Created with puppy love by JAMMZ | Copyright © 2017 JAAMZ. All Rights Reserved.</footer>
+
     </body>
 </html>
