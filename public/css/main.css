@@ -1,16 +1,42 @@
 /* CSS File for general site styling */
 
+
+
 body {
 	padding: 25px !important;
 	margin: 25px !important;
+	background-color: #A2AB58 !important;
+}
+
+main {
+	padding:20px;
 }
 
 #errors {
 	color:red;
 }
-.input_section{
+/*.input_section{
     padding-left: 40% !important;
+}*/
+
+#top-header {
+	text-align: center;
 }
+
+#top-header p {
+	font-style: italic;
+	font-size: 30px;
+	margin: 0% 20% 0% 20%;
+	background: rgba(204, 204, 204, 0.8) !important;
+}
+
+#top-header h1 {
+	color:black;
+	background: rgba(204, 204, 204, 0.8) !important;
+	margin: 2% 20% 0% 20%;
+}
+
+
 form div{
     padding: 20px 0px 0px 0px;
 }
@@ -20,7 +46,7 @@ ul {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #333;
+    background-color: #4A96AD;
 }
 
 li {
@@ -36,12 +62,8 @@ li a {
 }
 
 li a:hover {
-    background-color: purple;
+    background-color: #7D1935;
 	color:white;
-}
-
-h1 {
-	text-align: center;
 }
 
 h3 {
@@ -49,8 +71,10 @@ h3 {
 }
 
 .user_specs {
-	background-color: gainsboro;
+	background: rgba(204, 204, 204, 0.8) !important;
 	padding: 20px;
+	width: 50%;
+	
 }
 
 .pet_display_info {
@@ -63,11 +87,31 @@ p span{
 }
 
 .jumbotron {
-	background-image: url(../../public/css/HomeImg.jpg);
+	background-image: url(../../public/css/variouspets.png);*/
 	background-repeat: no-repeat;
 	width:100%;
-	
-	
-	
+	background-color: white !important;
+	color:black;
+}
+
+.btn {
+	background-color: #4A96AD !important;
+}
+
+#cent-but  {
+	display:block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.footer {
+  position:fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  background-color: #7D1935;
+  text-align: center;
+	color:white;
 }
 

@@ -11,7 +11,10 @@
     </head>
 
     <body>
-        <h1>JAMMZ Pet Adoption Site</h1>
+		<div class="jumbotron" id="top-header">
+			<h1 id="main-title">JAMMZ Pet Adoption Site</h1>
+			<p>Where life-long friendships are formed</p>
+		</div>
         <ul>
             <li><a href="/home">Profile</a></li>
             <li><a href="/buyPet">Browse Pets for Adoption</a></li>
@@ -22,42 +25,66 @@
         <main class="container">
             <div class="row col-md-12 input_section">
                 <h2>Enroll a New Pet</h2>
+				<p>Want to put your pet up for adoption? Fill out this form to create an adoption posting on our site!</p>
                 <p>{{errors}}</p>
-                <form action="/pets/create" method="post">
-                    <div>
-                        <label>Name:</label>
-                        <input type="text" name="name" pattern="[^\s]+" />
+                <form action="/pets/create" method="post" class="form-horizontal">
+					
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Name:</label>
+						<div class="col-sm-10">
+                        	<input type="text" name="name" class="form-control" placeholder="Pet's Name" pattern="[^\s]+" />
+						</div>
                     </div>
-                    <div>
-                        <label>Cost:</label>
-                        <input type="text" name="cost" />
+					
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Cost:</label>
+						<div class="col-sm-10">
+                        	<input type="text" name="cost" class="form-control" placeholder="Cost"/>
+						</div>
                     </div>
-                    <div>
-                        <label>Breed:</label>
-                        <input type="text" name="breed" />
+					
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Breed:</label>
+						<div class="col-sm-10">
+                        	<input type="text" name="breed" class="form-control" placeholder="Breed"/>
+						</div>
                     </div>
-                    <div>
-                        <label>Age:</label>
-                        <input type="text" name="age" />
+					
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Age:</label>
+                        <div class="col-sm-10">
+							<input type="text" name="age" class="form-control" placeholder="Age"/>
+						</div>
                     </div>
-                    <div>
-                        <label>Color:</label>
-                        <input type="text" name="color" />
+					
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Color:</label>
+						<div class="col-sm-10">
+                        	<input type="text" name="color" class="form-control" placeholder="Color" />
+						</div>
                     </div>
-                    <div>
-                        <label>Weight:</label>
-                        <input type="text" name="weight" />
+                    
+					<div class="form-group">
+                        <label class="col-sm-2 control-label">Weight:</label>
+						<div class="col-sm-10">
+                        	<input type="text" name="weight" class="form-control" placeholder="Weight"/>
+						</div>
                     </div>
-                    <div>
-                        <label>Additional Info:</label>
-                        <input type="text" name="info" />
+					
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Additional Info:</label>
+						<div class="col-sm-10">
+                        	<input type="text" name="info" class="form-control" placeholder="Additional Info"/>
+						</div>
                     </div>
-                    <div>
-                        <input type="submit" value="Create" class="btn btn-primary"/>
+					
+                    <div class="col-sm-2">
+                        <input type="submit" value="Create" class="btn-lg btn-primary btn-block" id="cent-but"/>
                     </div>
                 </form>
             </div>
         </main>
+		<footer class="footer">Created with puppy love by JAMMZ</footer>
         <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
             crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"

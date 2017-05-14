@@ -11,7 +11,10 @@
     </head>
 
     <body>
-        <h1>JAMMZ Pet Adoption Site</h1>
+	<div class="jumbotron" id="top-header">
+		<h1 id="main-title">JAMMZ Pet Adoption Site</h1>
+		<p>Where life-long friendships are formed</p>
+	</div>
         <ul>
             <li><a href="/home">Profile</a></li>
             <li><a href="/buyPet">Browse Pets for Adoption</a></li>
@@ -23,29 +26,43 @@
             <div class="row col-md-12 input_section">
                 <h2>Create New User</h2>
                 <p>{{errors}}</p>
-                <form action="/newuser" method="post">
-                    <div>
-                        <label>Username:</label>
-                        <input type="text" name="username" pattern="[^\s]+"/>
+                <form action="/newuser" method="post" class="form-horizontal">
+					
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Username:</label>
+						<div class="col-sm-10">
+                        	<input type="text" name="username" class="form-control" placeholder="Username" pattern="[^\s]+"/>
+                    	</div>
+					</div>
+					
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Password:</label>
+						<div class="col-sm-10">
+                        	<input type="password" name="password" placeholder="Password" class="form-control"/>
+                    	</div>
+					</div>
+					
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Name:</label>
+						<div class="col-sm-10">
+                        	<input type="text" name="name" class="form-control" placeholder="Your Name" pattern="[^\s]+"/>
+						</div>
                     </div>
-                    <div>
-                        <label>Password:</label>
-                        <input type="password" name="password" />
+					
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Age:</label>
+						<div class="col-sm-10">
+                        	<input type="text" name="age" placeholder="Your Age" class="form-control"/>
+						</div>
                     </div>
-                    <div>
-                        <label>Name:</label>
-                        <input type="text" name="name" pattern="[^\s]+"/>
-                    </div>
-                    <div>
-                        <label>Age:</label>
-                        <input type="text" name="age" />
-                    </div>
-                    <div>
-                        <input type="submit" value="Create" class="btn btn-primary"/>
+					
+                    <div class="col-sm-2">
+                        <input type="submit" value="Create" class="btn-lg btn-block btn-primary"/>
                     </div>
                 </form>
             </div>
         </main>
+		<footer class="footer">Created with puppy love by JAMMZ</footer>
 
         <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
             crossorigin="anonymous"></script>

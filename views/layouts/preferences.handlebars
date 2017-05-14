@@ -11,7 +11,10 @@
     </head>
     
     <body>
-        <h1>Update Your Personal Preferences</h1>
+		<div class="jumbotron" id="top-header">
+			<h1 id="main-title">JAMMZ Pet Adoption Site</h1>
+			<p>Where life-long friendships are formed</p>
+		</div>
         <ul>
             <li><a href="/home">Profile</a></li>
             <li><a href="/buyPet">Browse Pets for Adoption</a></li>
@@ -26,8 +29,8 @@
                 <p>{{errors}}</p>
                 <form action="/preferences" method="post">
                     <div>
-                        <label>What are your pet preferences? (i.e. puppies, under $100, 2 yrs old) </label>
-                        <input type="text" name="preferences" placeholder="Preferences" /> *
+                        <label>What are your pet preferences? (i.e. puppies, under $100, 2 yrs old)* </label>
+                        <textarea type="text" name="preferences" placeholder="Preferences" class="form-control" rows="3"></textarea>
                     </div>
 
                     <div>
@@ -39,6 +42,8 @@
         <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
             crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
-            crossorigin="anonymous"></script>
+				crossorigin="anonymous"></script>
+
+		<footer class="footer">Created with puppy love by JAMMZ</footer>
     </body>
 </html>
