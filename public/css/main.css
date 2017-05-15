@@ -127,6 +127,10 @@ hr {
     border-width: 1px;
 } 
 
+#half{
+    border-style: groove;
+}
+
 .footer {
   position:fixed;
   right: 0;

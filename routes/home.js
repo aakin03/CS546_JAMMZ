@@ -1,6 +1,5 @@
 
-/* JAMMZ Final
- */
+/* JAMMZ Final */
 
 const express = require("express");
 const router = express.Router();

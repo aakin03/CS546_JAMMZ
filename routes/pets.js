@@ -52,13 +52,13 @@ router.post("/update", isLoggedIn, function(req,res) {
 router.post("/adopted", isLoggedIn, function(req, res) {
     if (!req.isAuthenticated())
         return res.redirect('/');
-    pets.getOnePet(req.body.petName, req.body.ownerName)
+    pets.getOnePet(req.body.petNameAdopt, req.body.ownerNameAdopt)
     .then((result) => {
         result[0].status = "Adopted";
         
         let newInfo = {
             _id: req.body._id,
-            petName: req.body.petName,
+            petName: req.body.petNameAdopt,
             ownerName: req.user.userName,
             attributes: {
                 Breed: req.body.Breed,
@@ -71,7 +71,7 @@ router.post("/adopted", isLoggedIn, function(req, res) {
             extraInfo: req.body.extraInfo
         }
         
-        return pets.updatePet(result[0], newInfo, req.body.ownerName)
+        return pets.updatePet(result[0], newInfo, req.body.ownerNameAdopt)
         .then((updated) => {
             res.redirect("/home?success=false");
         })

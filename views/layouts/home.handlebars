@@ -32,7 +32,7 @@
 			<p><span>Name: </span>{{name}}</p>
 			<p><span>Age: </span>{{age}}</p>
 
-			<p><a href="/updateuser" type="button" value="Update User" class="btn btn-primary">Update User</a></p>
+			<input type="button" value="Update User" class="btn btn-primary" onclick="location.href='/updateuser';">
 			<!--<input type="submit" value="Update User" class="btn btn-primary">-->
 
         </div> 
@@ -53,12 +53,12 @@
             <p><span>Cost:</span> {{this.cost}}</p>
             <p><span>Status:</span> {{status}}</p>
             <p><span>Extra Info:</span> {{extraInfo}}</p>
-            <h4><a href="/updatepet/{{petName}}" type="button" value="Update Me!" class="btn btn-primary"/>Update Pet</a></h4>
+            <input type="button" value="Update Pet" class="btn btn-primary" onclick="location.href='/updatepet/{{petName}}';">
             
 			
             {{/each}}
         </div>
-        <h4><a href="/newPet" type="button" value="Enroll a New Pet" class="btn btn-primary"/>Enroll New Pet</a></h4>
+        <input type="button" value="Enroll a New Pet" class="btn btn-primary" onclick="location.href='/newPet';">
         
 		<hr>
 		
@@ -67,7 +67,7 @@
 		<p>{{this}}</p>
 		{{/each}}
 		
-		<h4><a href="/preferences" type="button" value="Add Preferences" class="btn btn-primary"/>Add Preferences</a></h4>
+		<input type="button" value="Add Preferences" class="btn btn-primary" onclick="location.href='/preferences';">
         
 		<hr>
 		
@@ -85,8 +85,9 @@
         <p><span>Cost:</span> {{this.[0].cost}}</p>
         <p><span>Status:</span> {{this.[0].status   }}</p>
         <p><span>Extra Info:</span> {{this.[0].extraInfo}}</p>
+        <hr id="half">
         {{/each}}
-		<h4><a href="/buyPet" type="button" value="Add Pets to Wishlist" class="btn btn-primary"/>Add to Wishlist</a></h4>
+		<input type="button" value="Add Pets to Wishlist" class="btn btn-primary" onclick="location.href='/buyPet';"/>
 		<footer class="footer">Created with puppy love by JAMMZ | Copyright © 2017 JAAMZ. All Rights Reserved.</footer>
 
     </body>

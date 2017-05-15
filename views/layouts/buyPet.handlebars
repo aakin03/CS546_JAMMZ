@@ -40,8 +40,8 @@
             <p>Status: {{this.status}}</p>
             <p>Extra Info: {{this.extraInfo}}</p>
             <form action="/pets/adopted" method="post">
-                <input type="text" name="petName" id="petName" value={{this.petName}} style="display:none" readonly />
-                <input type="text" name="ownerName" id="ownerName" value={{this.ownerName}} style="display:none" readonly />
+                <input type="text" name="petNameAdopt" id="petNameAdopt" value={{this.petName}} style="display:none" readonly />
+                <input type="text" name="ownerNameAdopt" id="ownerNameAdopt" value={{this.ownerName}} style="display:none" readonly />
                 <input type="submit" value="Adopt me!" class=" btn btn-blue btn-primary"/>
             </form>
             <br>
