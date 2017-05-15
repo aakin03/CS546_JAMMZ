@@ -16,7 +16,7 @@
 			<p>Where life-long friendships are formed</p>
 		</div>
         <ul>
-            <li><a href="/home">Profile</a></li>
+            <li><a href="/home" class="active">Profile</a></li>
             <li><a href="/buyPet">Browse Pets for Adoption</a></li>
             <li><a href="/newPet">Enroll a New Pet</a></li>
             <li><a href="/logout">Logout?</a></li>
@@ -27,10 +27,10 @@
 
         <h3>My Info </h3>
         <div class="user_specs">
-            <p>ID: {{id}}</p>
-            <p>Username: {{user}}</p>
-            <p>Name: {{name}}</p>
-            <p>Age: {{age}}</p>
+            <p><span>ID: </span>{{id}}</p>
+			<p><span>Username: </span>{{user}}</p>
+			<p><span>Name: </span>{{name}}</p>
+			<p><span>Age: </span>{{age}}</p>
 
 			<p><a href="/updateuser" type="button" value="Update User" class="btn btn-primary">Update User</a></p>
 			<!--<input type="submit" value="Update User" class="btn btn-primary">-->
@@ -62,7 +62,7 @@
         
 		<hr>
 		
-		<h3>Preferences: </h3>
+		<h3>Preferences </h3>
 		{{#each preferences}}
 		<p>{{this}}</p>
 		{{/each}}
@@ -71,7 +71,7 @@
         
 		<hr>
 		
-		<h3>Wishlist: </h3>
+		<h3>Wishlist </h3>
         {{#each wishlist}}
         <p><span>ID:</span> {{this.[0]._id}}</p>
         <p><span>Name:</span> {{this.[0].petName}}</p>

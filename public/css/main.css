@@ -1,7 +1,5 @@
 /* CSS File for general site styling */
 
-
-
 body {
 	padding: 25px !important;
 	margin: 25px !important;
@@ -15,12 +13,10 @@ main {
 #errors {
 	color:red;
 }
-/*.input_section{
-    padding-left: 40% !important;
-}*/
 
 #top-header {
 	text-align: center;
+	
 }
 
 #top-header p {
@@ -36,10 +32,12 @@ main {
 	margin: 2% 20% 0% 20%;
 }
 
+.active {
+	background-color: gray;
+}
 
 form div{
     padding: 2px 0px 0px 0px;
-	/*text-align: right;*/
 }
 
 ul {
